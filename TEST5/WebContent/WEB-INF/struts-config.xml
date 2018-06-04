@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config
+    PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+    "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+
+	<!-- ActionFormの定義を行います -->
+	<form-beans>
+		<form-bean name="delete" type="orders.DeleteForm" />
+	</form-beans>
+
+	<!-- ActionとActionFormとURLのマッピング設定を行います -->
+	<action-mappings>
+		<action path="/orders" name="ordersForm" scope="request"
+			type="orders.OrdersAction">
+			<forward name="ok" path="/WEB-INF/views/orders.jsp"></forward>
+		</action>
+	</action-mappings>
+
+
+
+	<!--メッセージリソースファイルを設定 -->
+	<message-resources parameter="resource" />
+
+	<!-- Validatorプラグインの設定 -->
+	<plug-in
+		className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+			value="/org/apache/struts/validator/validator-rules.xml,
+				/WEB-INF/validation.xml" />
+	</plug-in>
+
+</struts-config>
