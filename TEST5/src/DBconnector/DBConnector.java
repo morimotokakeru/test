@@ -9,14 +9,15 @@ import java.sql.SQLException;
 public class DBConnector {
 	private Connection cn = null;
 	//変更しないものは定数で用意する
-	private final static String URL  = "jdbc:oracle:oci8:@oracle.techscore";
-	private final static String USER = "scott";
-	private final static String PASS = "tiger";
+	private final static String DRIVER = "oracle.jdbc.driver.OracleDriver";
+	private final static String URL  = "jdbc:oracle:thin:@192.168.1.16:orcl";
+	private final static String USER = "hr";
+	private final static String PASS = "1234";
 
 	// ドライバをロードする
 	public DBConnector() {
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver").newInstance();
+			Class.forName(DRIVER).newInstance();
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
