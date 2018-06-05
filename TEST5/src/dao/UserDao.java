@@ -25,8 +25,9 @@ public class UserDao{
 				Sql.append(" and user_id = ?");
 			}
 			if(form.getFirstName() != null || !form.getFirstName().isEmpty()) {
-				Sql.append(" and user_id = ?");
+				Sql.append(" and user_name = ?");
 			}
+
 			if(form.getUserId() != 0) {
 				Sql.append(" and user_id = ?");
 			}
