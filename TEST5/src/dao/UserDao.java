@@ -18,11 +18,11 @@ public class UserDao{
 		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
 		ResultSet rs = null;
 		try {
-			String sql = "select * from users wehre 1=1";// 準備//
+			String sql = "select * from CUSTOMER wehre 1=1";// 準備//
 
 			StringBuilder Sql = new StringBuilder(sql);
 			if(form.getUserId() != 0) {
-				Sql.append(" and user_id = ?");
+				Sql.append(" and USER_ID = ?");
 			}
 			if(form.getFirstName() != null || !form.getFirstName().isEmpty()) {
 				Sql.append(" and first_name like ?");
