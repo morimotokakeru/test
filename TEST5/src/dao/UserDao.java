@@ -25,23 +25,36 @@ public class UserDao{
 				Sql.append(" and user_id = ?");
 			}
 			if(form.getFirstName() != null || !form.getFirstName().isEmpty()) {
-				Sql.append(" and user_id = ?");
+				Sql.append(" and first_name like ?");
 			}
-			if(form.getUserId() != 0) {
-				Sql.append(" and user_id = ?");
+			if(form.getLastName() != null || !form.getLastName().isEmpty()) {
+				Sql.append(" and last_name like ?");
 			}
-			if(form.getUserId() != 0) {
-				Sql.append(" and user_id = ?");
+			if(form.getFirstNameKana() != null || !form.getFirstNameKana().isEmpty()) {
+				Sql.append(" and first_name_kana like ?");
 			}
-			if(form.getUserId() != 0) {
-				Sql.append(" and user_id = ?");
+			if(form.getFirstNameKana() != null || !form.getFirstNameKana().isEmpty()) {
+				Sql.append(" and last_name_kana like ?");
 			}
-			if(form.getUserId() != 0) {
-				Sql.append(" and user_id = ?");
+			if(form.getSex() != null || !form.getSex().isEmpty()) {
+				Sql.append(" and sex like ?");
 			}
-			if(form.getUserId() != 0) {
-				Sql.append(" and user_id = ?");
+			if(form.getFirstName() != null || !form.getFirstName().isEmpty()) {
+				Sql.append(" and user_name like ?");
 			}
+			if(form.getFirstName() != null || !form.getFirstName().isEmpty()) {
+				Sql.append(" and user_name like ?");
+			}
+			if(form.getFirstName() != null || !form.getFirstName().isEmpty()) {
+				Sql.append(" and user_name like ?");
+			}
+			if(form.getFirstName() != null || !form.getFirstName().isEmpty()) {
+				Sql.append(" and user_name like ?");
+			}
+			if(form.getFirstName() != null || !form.getFirstName().isEmpty()) {
+				Sql.append(" and user_name like ?");
+			}
+
 			// ドライバロード.DB接続.SQLをセット
 			st = db.connect().prepareStatement(Sql.toString());
 			rs = st.executeQuery();// 実行と結果の戻り//
