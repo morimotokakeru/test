@@ -1,41 +1,42 @@
 package dao;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- * Servlet implementation class UserDao
- */
-@WebServlet("/UserDao")
-public class UserDao extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UserDao() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+import DBconnector.DBConnector;
+import beans.UserBean;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+public class UserDao{
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	public List<UserBean> getUserAll(){
+		DBConnector db = new DBConnector();
+		List<UserBean> users = null;
+		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
+		ResultSet rs = null;
+		try {
+			String sql = "select ";// 準備//
+
+			StringBuilder Sql = new StringBuilder(sql);
+			// ドライバロード.DB接続.SQLをセット
+			st = db.connect().prepareStatement(Sql.toString());
+			rs = st.executeQuery();// 実行と結果の戻り//
+			users = new ArrayList<>();
+			while (rs.next()) {// 次のレコードに下がれればの条件式//
+				UserBean user = new UserBean();
+				user.setUserId(rs.getInt("user_id"));
+
+				users.add(user);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			db.close(st, rs);
+		}
+		return users;
+
 	}
 
 }
