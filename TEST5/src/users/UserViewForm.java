@@ -152,5 +152,6 @@ public class UserViewForm extends ActionForm{
 		this.email = email;
 	}
 	
+	
 }
 	
