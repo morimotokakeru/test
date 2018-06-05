@@ -21,7 +21,7 @@ public class UserViewAction extends Action {
 		UserViewForm form = (UserViewForm) _form;
 		UserDao dao = new UserDao();
 		List<UserBean> list = dao.getUserAll(form);
-		request.setAttribute("bean",list);
+		request.setAttribute("beans",list);
 		//request.setAttribute("bean", );
 		return mapping.findForward("ok");
 		

@@ -32,11 +32,10 @@ public class UserViewForm extends ActionForm{
 	private String positionName;
 	private int postal;
 	private String street1;
-	private String street2;
 	private String tell;
 	private String fax;
 	private String mobile;
-	private String Email;
+	private String email;
 	public int getUserId() {
 		return userId;
 	}
@@ -127,12 +126,7 @@ public class UserViewForm extends ActionForm{
 	public void setStreet1(String street1) {
 		this.street1 = street1;
 	}
-	public String getStreet2() {
-		return street2;
-	}
-	public void setStreet2(String street2) {
-		this.street2 = street2;
-	}
+
 	public String getTell() {
 		return tell;
 	}
@@ -152,10 +146,10 @@ public class UserViewForm extends ActionForm{
 		this.mobile = mobile;
 	}
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
 	
 }
