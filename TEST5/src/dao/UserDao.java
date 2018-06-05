@@ -39,24 +39,79 @@ public class UserDao{
 			if(form.getSex() != null || !form.getSex().isEmpty()) {
 				Sql.append(" and sex like ?");
 			}
-			if(form.getFirstName() != null || !form.getFirstName().isEmpty()) {
-				Sql.append(" and user_name like ?");
+			if(form.getClassification1() != null || !form.getClassification1().isEmpty()) {
+				Sql.append(" and Classification1 like ?");
 			}
-			if(form.getFirstName() != null || !form.getFirstName().isEmpty()) {
-				Sql.append(" and user_name like ?");
+			if(form.getClassification2() != null || !form.getClassification2().isEmpty()) {
+				Sql.append(" and Classification2 like ?");
 			}
-			if(form.getFirstName() != null || !form.getFirstName().isEmpty()) {
-				Sql.append(" and user_name like ?");
+			if(form.getPositionName() != null || !form.getPositionName().isEmpty()) {
+				Sql.append(" and position_name like ?");
 			}
-			if(form.getFirstName() != null || !form.getFirstName().isEmpty()) {
-				Sql.append(" and user_name like ?");
+			if(form.getStreet1() != null || !form.getStreet1().isEmpty()) {
+				Sql.append(" and street1 like ?");
 			}
-			if(form.getFirstName() != null || !form.getFirstName().isEmpty()) {
-				Sql.append(" and user_name like ?");
+			if(form.getTell() != null || !form.getTell().isEmpty()) {
+				Sql.append(" and tell like ?");
+			}
+			if(form.getFax() != null || !form.getFax().isEmpty()) {
+				Sql.append(" and fax like ?");
+			}
+			if(form.getMobile() != null || !form.getMobile().isEmpty()) {
+				Sql.append(" and mobile like ?");
+			}
+			if(form.getEmail() != null || !form.getEmail().isEmpty()) {
+				Sql.append(" and email like ?");
 			}
 
 			// ドライバロード.DB接続.SQLをセット
 			st = db.connect().prepareStatement(Sql.toString());
+
+			int index = 0;
+
+			if(form.getUserId() != 0) {
+				st.setInt(++index,form.getUserId());
+			}
+			if(form.getFirstName() != null || !form.getFirstName().isEmpty()) {
+				st.setString(++index,"%" + form.getFirstName() + "%");
+			}
+			if(form.getLastName() != null || !form.getLastName().isEmpty()) {
+				st.setString(++index,"%" + form.getLastName() + "%");
+			}
+			if(form.getFirstNameKana() != null || !form.getFirstNameKana().isEmpty()) {
+				st.setString(++index,"%" + form.getFirstNameKana() + "%");
+			}
+			if(form.getFirstNameKana() != null || !form.getFirstNameKana().isEmpty()) {
+				st.setString(++index,"%" + form.getFirstNameKana() + "%");
+			}
+			if(form.getSex() != null || !form.getSex().isEmpty()) {
+				st.setString(++index,"%" + form.getSex() + "%");
+			}
+			if(form.getClassification1() != null || !form.getClassification1().isEmpty()) {
+				st.setString(++index,"%" + form.getClassification1() + "%");
+			}
+			if(form.getClassification2() != null || !form.getClassification2().isEmpty()) {
+				st.setString(++index,"%" + form.getClassification2() + "%");
+			}
+			if(form.getPositionName() != null || !form.getPositionName().isEmpty()) {
+				st.setString(++index,"%" + form.getPositionName() + "%");
+			}
+			if(form.getStreet1() != null || !form.getStreet1().isEmpty()) {
+				st.setString(++index,"%" + form.getStreet1() + "%");
+			}
+			if(form.getTell() != null || !form.getTell().isEmpty()) {
+				st.setString(++index,"%" + form.getTell() + "%");
+			}
+			if(form.getFax() != null || !form.getFax().isEmpty()) {
+				st.setString(++index,"%" + form.getFax() + "%");
+			}
+			if(form.getMobile() != null || !form.getMobile().isEmpty()) {
+				st.setString(++index,"%" + form.getMobile() + "%");
+			}
+			if(form.getEmail() != null || !form.getEmail().isEmpty()) {
+				st.setString(++index,"%" + form.getEmail() + "%");
+			}
+
 			rs = st.executeQuery();// 実行と結果の戻り//
 			users = new ArrayList<>();
 			while (rs.next()) {// 次のレコードに下がれればの条件式//
