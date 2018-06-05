@@ -17,9 +17,30 @@ public class UserDao{
 		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
 		ResultSet rs = null;
 		try {
-			String sql = "select ";// 準備//
+			String sql = "select * from users wehre 1=1";// 準備//
 
 			StringBuilder Sql = new StringBuilder(sql);
+			if(form.getUserId() != 0) {
+				Sql.append(" and user_id = ?");
+			}
+			if(form.getFirstName() != null || !form.getFirstName().isEmpty()) {
+				Sql.append(" and user_id = ?");
+			}
+			if(form.getUserId() != 0) {
+				Sql.append(" and user_id = ?");
+			}
+			if(form.getUserId() != 0) {
+				Sql.append(" and user_id = ?");
+			}
+			if(form.getUserId() != 0) {
+				Sql.append(" and user_id = ?");
+			}
+			if(form.getUserId() != 0) {
+				Sql.append(" and user_id = ?");
+			}
+			if(form.getUserId() != 0) {
+				Sql.append(" and user_id = ?");
+			}
 			// ドライバロード.DB接続.SQLをセット
 			st = db.connect().prepareStatement(Sql.toString());
 			rs = st.executeQuery();// 実行と結果の戻り//
@@ -27,6 +48,23 @@ public class UserDao{
 			while (rs.next()) {// 次のレコードに下がれればの条件式//
 				UserBean user = new UserBean();
 				user.setUserId(rs.getInt("user_id"));
+				user.setFirstName(rs.getString("first_name"));
+				user.setFirstNameKana(rs.getString("first_name_kana"));
+				user.setLastName(rs.getString("last_name"));
+				user.setLastNameKana(rs.getString("last_name"));
+				user.setTitle(rs.getString("title"));
+				user.setSex(rs.getString("sex"));
+				user.setClassification1(rs.getString("classification"));
+				user.setClassification2(rs.getString("classification2"));
+				user.setCompany(rs.getString("company"));
+				user.setDepartment1(rs.getString("department1"));
+				user.setDepartment2(rs.getString("department2"));
+				user.setPostal(rs.getInt("postal"));
+				user.setStreet1(rs.getString("street1"));
+				user.setStreet2(rs.getString("street2"));
+				user.setTell(rs.getString("tell"));
+				user.setMobile(rs.getString("mobile"));
+				user.setEmail(rs.getString("email"));
 
 				users.add(user);
 			}

@@ -7,14 +7,14 @@
 
 	<!-- ActionFormの定義を行います -->
 	<form-beans>
-		<form-bean name="delete" type="orders.DeleteForm" />
+		<form-bean name="userView" type="users.UserViewForm" />
 	</form-beans>
 
 	<!-- ActionとActionFormとURLのマッピング設定を行います -->
 	<action-mappings>
-		<action path="/orders" name="ordersForm" scope="request"
-			type="orders.OrdersAction">
-			<forward name="ok" path="/WEB-INF/views/orders.jsp"></forward>
+		<action path="/users" name="userView" scope="request"
+			type="users.UserViewAction">
+			<forward name="ok" path="/WEB-INF/views/userview.jsp"></forward>
 		</action>
 	</action-mappings>
 

@@ -1,44 +1,31 @@
 package users;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
 
-/**
- * Servlet implementation class UserViewAction
- */
-@WebServlet("/UserViewAction")
+import beans.UserBean;
+import dao.UserDao;
+
 public class UserViewAction extends Action {
-	private static final long serialVersionUID = 1L;
-
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UserViewAction() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	public ActionForward execute (ActionMapping mapping,ActionForm _form,HttpServletRequest request,HttpServletResponse response)throws SQLException,IOException{
+		
+		UserViewForm form = (UserViewForm) _form;
+		UserDao dao = new UserDao();
+		List<UserBean> list = dao.getUserAll(form);
+		request.setAttribute("bean",list);
+		//request.setAttribute("bean", );
+		return mapping.findForward("ok");
+		
+		
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
+	
 }
