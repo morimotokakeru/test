@@ -8,10 +8,11 @@ import java.util.List;
 
 import DBconnector.DBConnector;
 import beans.UserBean;
+import users.UserViewForm;
 
 public class UserDao{
 
-	public List<UserBean> getUserAll(){
+	public List<UserBean> getUserAll(UserViewForm form){
 		DBConnector db = new DBConnector();
 		List<UserBean> users = null;
 		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
