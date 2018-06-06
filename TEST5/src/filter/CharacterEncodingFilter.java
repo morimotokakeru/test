@@ -1,4 +1,4 @@
-package fiter;
+package filter;
 
 import java.io.IOException;
 
@@ -13,12 +13,13 @@ public class CharacterEncodingFilter implements Filter {
 
 	private String encoding = null;
 
-
+	
 	public void destroy() {
 		encoding = null;
 	}
 
-	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
+			throws IOException, ServletException {
 
 		req.setCharacterEncoding(encoding);
 		chain.doFilter(req, res);
