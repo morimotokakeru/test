@@ -25,43 +25,44 @@ public class UserDao{
 				Sql.append(" and USER_ID = ?");
 			}
 			if(form.getFirstName() != null || !form.getFirstName().isEmpty()) {
-				Sql.append(" and first_name like ?");
+				Sql.append(" and FIRST_NAME like ?");
 			}
 			if(form.getLastName() != null || !form.getLastName().isEmpty()) {
-				Sql.append(" and last_name like ?");
+				Sql.append(" and LAST_NAME like ?");
 			}
 			if(form.getFirstNameKana() != null || !form.getFirstNameKana().isEmpty()) {
-				Sql.append(" and first_name_kana like ?");
+				Sql.append(" and FIRST_NAME_KANA like ?");
 			}
 			if(form.getFirstNameKana() != null || !form.getFirstNameKana().isEmpty()) {
-				Sql.append(" and last_name_kana like ?");
+				Sql.append(" and LAST_NAME_KANA like ?");
 			}
 			if(form.getSex() != null || !form.getSex().isEmpty()) {
-				Sql.append(" and sex like ?");
+				Sql.append(" and SEX like ?");
 			}
 			if(form.getClassification1() != null || !form.getClassification1().isEmpty()) {
-				Sql.append(" and Classification1 like ?");
+				Sql.append(" and CLASSIFICATION1 like ?");
 			}
 			if(form.getClassification2() != null || !form.getClassification2().isEmpty()) {
-				Sql.append(" and Classification2 like ?");
+				Sql.append(" and CLASSIFICATION2 like ?");
 			}
 			if(form.getPositionName() != null || !form.getPositionName().isEmpty()) {
-				Sql.append(" and position_name like ?");
+				Sql.append(" and POSITION_NAME like ?");
 			}
 			if(form.getStreet1() != null || !form.getStreet1().isEmpty()) {
-				Sql.append(" and street1 like ?");
+				Sql.append(" and STREET1 like ?");
 			}
 			if(form.getTell() != null || !form.getTell().isEmpty()) {
-				Sql.append(" and tell like ?");
+				Sql.append(" and TELL like ?");
 			}
 			if(form.getFax() != null || !form.getFax().isEmpty()) {
-				Sql.append(" and fax like ?");
+				Sql.append(" and FAX like ?");
+				
 			}
 			if(form.getMobile() != null || !form.getMobile().isEmpty()) {
 				Sql.append(" and mobile like ?");
 			}
 			if(form.getEmail() != null || !form.getEmail().isEmpty()) {
-				Sql.append(" and email like ?");
+				Sql.append(" and EMAIL like ?");
 			}
 
 			// ドライバロード.DB接続.SQLをセット
@@ -116,24 +117,24 @@ public class UserDao{
 			users = new ArrayList<>();
 			while (rs.next()) {// 次のレコードに下がれればの条件式//
 				UserBean user = new UserBean();
-				user.setUserId(rs.getInt("user_id"));
-				user.setFirstName(rs.getString("first_name"));
-				user.setFirstNameKana(rs.getString("first_name_kana"));
-				user.setLastName(rs.getString("last_name"));
-				user.setLastNameKana(rs.getString("last_name"));
-				user.setTitle(rs.getString("title"));
-				user.setSex(rs.getString("sex"));
-				user.setClassification1(rs.getString("classification"));
-				user.setClassification2(rs.getString("classification2"));
-				user.setCompany(rs.getString("company"));
-				user.setDepartment1(rs.getString("department1"));
-				user.setDepartment2(rs.getString("department2"));
-				user.setPostal(rs.getInt("postal"));
-				user.setStreet1(rs.getString("street1"));
-				user.setStreet2(rs.getString("street2"));
-				user.setTell(rs.getString("tell"));
-				user.setMobile(rs.getString("mobile"));
-				user.setEmail(rs.getString("email"));
+				user.setUserId(rs.getInt("USER_ID"));
+				user.setFirstName(rs.getString("FIRST_NAME"));
+				user.setFirstNameKana(rs.getString("FIRST_NAME_KANA"));
+				user.setLastName(rs.getString("LAST_NAME"));
+				user.setLastNameKana(rs.getString("LAST_NAME_KANA"));
+				user.setTitle(rs.getString("TITLE"));
+				user.setSex(rs.getString("SEX"));
+				user.setClassification1(rs.getString("CLASSIFICATION1"));
+				user.setClassification2(rs.getString("CLASSIFICATION2"));
+				user.setCompany(rs.getString("COMPANY"));
+				user.setDepartment1(rs.getString("DEPARTMENT1"));
+				user.setDepartment2(rs.getString("DEPARTMENT2"));
+				user.setPostal(rs.getInt("POSTAL"));
+				user.setStreet1(rs.getString("STREET1"));
+			//	user.setStreet2(rs.getString("street2"));
+				user.setTell(rs.getString("TELL"));
+				user.setMobile(rs.getString("MOBILE"));
+				user.setEmail(rs.getString("EMAIL"));
 
 				users.add(user);
 			}
