@@ -142,7 +142,8 @@ public class UserBean {
 	public void setEmail(String email) {
 		Email = email;
 	}
-	
+
+
 }
-	
+
 
