@@ -13,7 +13,9 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import beans.UserBean;
-import dao.UserDao;
+
+
+
 
 public class UserViewAction extends Action {
 	public ActionForward execute (ActionMapping mapping,ActionForm _form,HttpServletRequest request,HttpServletResponse response)throws SQLException,IOException{
