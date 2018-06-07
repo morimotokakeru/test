@@ -18,14 +18,14 @@ public class UserViewForm extends ActionForm{
 	*/
 //顧客情報
 	private int userId;
-	private String FirstName;
+	private String firstName;
 	private String lastName;
 	private String firstNameKana;
 	private String lastNameKana;
 	private String title;
 	private String sex;
-	private String Classification1;
-	private String Classification2;
+	private String classification1;
+	private String classification2;
 	private String company;
 	private String department1;
 	private String department2;
@@ -43,10 +43,10 @@ public class UserViewForm extends ActionForm{
 		this.userId = userId;
 	}
 	public String getFirstName() {
-		return FirstName;
+		return firstName;
 	}
 	public void setFirstName(String firstName) {
-		FirstName = firstName;
+		this.firstName = firstName;
 	}
 	public String getLastName() {
 		return lastName;
@@ -79,16 +79,16 @@ public class UserViewForm extends ActionForm{
 		this.sex = sex;
 	}
 	public String getClassification1() {
-		return Classification1;
+		return classification1;
 	}
 	public void setClassification1(String classification1) {
-		Classification1 = classification1;
+		this.classification1 = classification1;
 	}
 	public String getClassification2() {
-		return Classification2;
+		return classification2;
 	}
 	public void setClassification2(String classification2) {
-		Classification2 = classification2;
+		this.classification2 = classification2;
 	}
 	public String getCompany() {
 		return company;
@@ -126,7 +126,6 @@ public class UserViewForm extends ActionForm{
 	public void setStreet1(String street1) {
 		this.street1 = street1;
 	}
-
 	public String getTell() {
 		return tell;
 	}
@@ -151,7 +150,5 @@ public class UserViewForm extends ActionForm{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
+
 }
-	

@@ -15,7 +15,7 @@ public class UserBean {
 	private String department1;
 	private String department2;
 	private String positionName;
-	private int postal;
+	private String postal;
 	private String street1;
 	private String street2;
 	private String tell;
@@ -100,10 +100,10 @@ public class UserBean {
 	public void setPositionName(String positionName) {
 		this.positionName = positionName;
 	}
-	public int getPostal() {
+	public String getPostal() {
 		return postal;
 	}
-	public void setPostal(int postal) {
+	public void setPostal(String postal) {
 		this.postal = postal;
 	}
 	public String getStreet1() {
@@ -142,7 +142,5 @@ public class UserBean {
 	public void setEmail(String email) {
 		Email = email;
 	}
-	
-}
-	
 
+}

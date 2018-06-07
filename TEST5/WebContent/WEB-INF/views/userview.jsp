@@ -13,19 +13,17 @@
 <title>顧客一覧</title>
 </head>
 <body>
-
-		<logic:iterate id="bean" name="beans">
+	<b>test</b>
+	<logic:iterate id="bean" name="beans">
 
 			<div>
 				<table>
 					<tr>
 						<th><div Align="right">会社名:</div></th>
-						<br>
 						<td><div Align="left">
 								<bean:write name="bean" property="company" />
 							</div></td>
 						<th><div Align="right">苗字 :</div></th>
-						<br>
 						<td><div Align="left">
 								<bean:write name="bean" property="firstName" />
 							</div></td>
@@ -103,18 +101,10 @@
 							</div></td>
 					</tr>
 
-					<html:form action="/detail" method="GET">
-						<html:hidden name="bean" property="projectCode" />
-						<html:submit value="詳細表示" />
-					</html:form>
-					<html:form action="/delete" method="GET">
-						<html:hidden name="bean" property="projectCode" />
-						<html:submit value="削除" />
-					</html:form>
+
 				</table>
 			</div>
 			<hr>
 		</logic:iterate>
-	</div>
 </body>
 </html>

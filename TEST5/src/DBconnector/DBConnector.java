@@ -10,7 +10,7 @@ public class DBConnector {
 	private Connection cn = null;
 	//変更しないものは定数で用意する
 	private final static String DRIVER = "oracle.jdbc.driver.OracleDriver";
-	private final static String URL  = "jdbc:oracle:thin:@192.168.1.16:orcl";
+	private final static String URL  = "jdbc:oracle:thin:@192.168.1.16:1521:orcl";
 	private final static String USER = "hr";
 	private final static String PASS = "1234";
 
