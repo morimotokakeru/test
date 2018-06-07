@@ -18,50 +18,50 @@ public class UserDao{
 		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
 		ResultSet rs = null;
 		try {
-			String sql = "select * from CUSTOMER wehre 1=1";// 準備//
+			String sql = "SELECT * FROM CUSTOMER WHERE 1=1";// 準備//
 
 			StringBuilder Sql = new StringBuilder(sql);
 			if(form.getUserId() != 0) {
 				Sql.append(" and USER_ID = ?");
 			}
-			if(form.getFirstName() != null || !form.getFirstName().isEmpty()) {
+			if(form.getFirstName() != null && !form.getFirstName().isEmpty()) {
 				Sql.append(" and FIRST_NAME like ?");
 			}
-			if(form.getLastName() != null || !form.getLastName().isEmpty()) {
+			if(form.getLastName() != null && !form.getLastName().isEmpty()) {
 				Sql.append(" and LAST_NAME like ?");
 			}
-			if(form.getFirstNameKana() != null || !form.getFirstNameKana().isEmpty()) {
+			if(form.getFirstNameKana() != null && !form.getFirstNameKana().isEmpty()) {
 				Sql.append(" and FIRST_NAME_KANA like ?");
 			}
-			if(form.getFirstNameKana() != null || !form.getFirstNameKana().isEmpty()) {
+			if(form.getFirstNameKana() != null && !form.getFirstNameKana().isEmpty()) {
 				Sql.append(" and LAST_NAME_KANA like ?");
 			}
-			if(form.getSex() != null || !form.getSex().isEmpty()) {
+			if(form.getSex() != null && !form.getSex().isEmpty()) {
 				Sql.append(" and SEX like ?");
 			}
-			if(form.getClassification1() != null || !form.getClassification1().isEmpty()) {
+			if(form.getClassification1() != null && !form.getClassification1().isEmpty()) {
 				Sql.append(" and CLASSIFICATION1 like ?");
 			}
-			if(form.getClassification2() != null || !form.getClassification2().isEmpty()) {
+			if(form.getClassification2() != null && !form.getClassification2().isEmpty()) {
 				Sql.append(" and CLASSIFICATION2 like ?");
 			}
-			if(form.getPositionName() != null || !form.getPositionName().isEmpty()) {
+			if(form.getPositionName() != null && !form.getPositionName().isEmpty()) {
 				Sql.append(" and POSITION_NAME like ?");
 			}
-			if(form.getStreet1() != null || !form.getStreet1().isEmpty()) {
+			if(form.getStreet1() != null && !form.getStreet1().isEmpty()) {
 				Sql.append(" and STREET1 like ?");
 			}
-			if(form.getTell() != null || !form.getTell().isEmpty()) {
+			if(form.getTell() != null && !form.getTell().isEmpty()) {
 				Sql.append(" and TELL like ?");
 			}
-			if(form.getFax() != null || !form.getFax().isEmpty()) {
+			if(form.getFax() != null && !form.getFax().isEmpty()) {
 				Sql.append(" and FAX like ?");
-				
+
 			}
-			if(form.getMobile() != null || !form.getMobile().isEmpty()) {
+			if(form.getMobile() != null && !form.getMobile().isEmpty()) {
 				Sql.append(" and mobile like ?");
 			}
-			if(form.getEmail() != null || !form.getEmail().isEmpty()) {
+			if(form.getEmail() != null && !form.getEmail().isEmpty()) {
 				Sql.append(" and EMAIL like ?");
 			}
 
@@ -73,43 +73,43 @@ public class UserDao{
 			if(form.getUserId() != 0) {
 				st.setInt(++index,form.getUserId());
 			}
-			if(form.getFirstName() != null || !form.getFirstName().isEmpty()) {
+			if(form.getFirstName() != null && !form.getFirstName().isEmpty()) {
 				st.setString(++index,"%" + form.getFirstName() + "%");
 			}
-			if(form.getLastName() != null || !form.getLastName().isEmpty()) {
+			if(form.getLastName() != null && !form.getLastName().isEmpty()) {
 				st.setString(++index,"%" + form.getLastName() + "%");
 			}
-			if(form.getFirstNameKana() != null || !form.getFirstNameKana().isEmpty()) {
+			if(form.getFirstNameKana() != null && !form.getFirstNameKana().isEmpty()) {
 				st.setString(++index,"%" + form.getFirstNameKana() + "%");
 			}
-			if(form.getFirstNameKana() != null || !form.getFirstNameKana().isEmpty()) {
+			if(form.getFirstNameKana() != null && !form.getFirstNameKana().isEmpty()) {
 				st.setString(++index,"%" + form.getFirstNameKana() + "%");
 			}
-			if(form.getSex() != null || !form.getSex().isEmpty()) {
+			if(form.getSex() != null && !form.getSex().isEmpty()) {
 				st.setString(++index,"%" + form.getSex() + "%");
 			}
-			if(form.getClassification1() != null || !form.getClassification1().isEmpty()) {
+			if(form.getClassification1() != null && !form.getClassification1().isEmpty()) {
 				st.setString(++index,"%" + form.getClassification1() + "%");
 			}
-			if(form.getClassification2() != null || !form.getClassification2().isEmpty()) {
+			if(form.getClassification2() != null && !form.getClassification2().isEmpty()) {
 				st.setString(++index,"%" + form.getClassification2() + "%");
 			}
-			if(form.getPositionName() != null || !form.getPositionName().isEmpty()) {
+			if(form.getPositionName() != null && !form.getPositionName().isEmpty()) {
 				st.setString(++index,"%" + form.getPositionName() + "%");
 			}
-			if(form.getStreet1() != null || !form.getStreet1().isEmpty()) {
+			if(form.getStreet1() != null && !form.getStreet1().isEmpty()) {
 				st.setString(++index,"%" + form.getStreet1() + "%");
 			}
-			if(form.getTell() != null || !form.getTell().isEmpty()) {
+			if(form.getTell() != null && !form.getTell().isEmpty()) {
 				st.setString(++index,"%" + form.getTell() + "%");
 			}
-			if(form.getFax() != null || !form.getFax().isEmpty()) {
+			if(form.getFax() != null && !form.getFax().isEmpty()) {
 				st.setString(++index,"%" + form.getFax() + "%");
 			}
-			if(form.getMobile() != null || !form.getMobile().isEmpty()) {
+			if(form.getMobile() != null && !form.getMobile().isEmpty()) {
 				st.setString(++index,"%" + form.getMobile() + "%");
 			}
-			if(form.getEmail() != null || !form.getEmail().isEmpty()) {
+			if(form.getEmail() != null && !form.getEmail().isEmpty()) {
 				st.setString(++index,"%" + form.getEmail() + "%");
 			}
 
@@ -129,14 +129,14 @@ public class UserDao{
 				user.setCompany(rs.getString("COMPANY"));
 				user.setDepartment1(rs.getString("DEPARTMENT1"));
 				user.setDepartment2(rs.getString("DEPARTMENT2"));
-				user.setPostal(rs.getInt("POSTAL"));
+				user.setPostal(rs.getString("POSTAL"));
 				user.setStreet1(rs.getString("STREET1"));
-			//	user.setStreet2(rs.getString("street2"));
 				user.setTell(rs.getString("TELL"));
 				user.setMobile(rs.getString("MOBILE"));
 				user.setEmail(rs.getString("EMAIL"));
 
 				users.add(user);
+				System.out.println(users);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
