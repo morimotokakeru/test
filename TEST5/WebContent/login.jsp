@@ -11,29 +11,98 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<!-- Java Script -->
+<!-- <script type="text/javascript">
+	function checkValue() {
+		inputForm = eval("document.LoginForm");
+		if (!inputForm.email.value) {
+			alert("Emailを　入力してください")
+			inputForm.email.focus();
+			return false;
+
+		}
+		if (!inputForm.password.value) {
+			alert("passwordを　入力してください。")
+			inputForm.password.focus();
+			return false;
+		}
+	}
+
+	function goJoinForm() {
+		location.href = "JoinForm.jsp";
+	}
+</script> -->
 </head>
 <body>
-	<div style="color: red">
+	<html:form action="/login">
+		<table>
+			<tr>
+				<td bgcolor="skyblue">Email :</td>
+				<td><html:text name="LoginForm" property="userName"
+						maxlength="100" /></td>
+			</tr>
+			<tr>
+				<td bgcolor="skyblue">Password :</td>
+				<td><html:password name="LoginForm" property="password"
+						maxlength="100" /></td>
+			</tr>
+		</table>
+		<html:submit value="Login" />
+	</html:form>
+
+	<%-- <div>
+		<form action="/login" name="LoginForm" method="POST" 
+			onsubmit="return checkValue()">
+
+			<table>
+				<tr>
+					<td bgcolor="skyblue">Email</td>
+					<td><input type="text" name="email" maxlength="100"></td>
+				</tr>
+				<tr>
+					<td bgcolor="skyblue">Password</td>
+					<td><input type="password" name="password" maxlength="100"></td>
+				</tr>
+			</table>
+			<br> <input type="submit" value="Login" /> <input type="button"
+				value="会員登録" onclick="goJoinForm()" />
+		</form>
+
+
+		<%
+			//Email, password 間違えた場合は画面にメッセージ表示
+			//LoginPro.jspで　login 処理結果のメッセージ伝える。
+
+			String msg = request.getParameter("msg");
+
+			if (msg != null && msg.equals("0")) {
+				out.print("<br>");
+				out.print("<font color='red' size ='5'>パスワードをご確認ください。</font>");
+			}
+			if (msg != null && msg.equals("-1")) {
+				out.print("<br>");
+				out.print("<font color='red' size ='5'>パスワードをご確認ください。</font>");
+			}
+		%>
+	</div> 
+ --%>
+
+
+	<%-- <div style="color: red">
 		<html:errors />
 	</div>
-	<form action = "/login" method="POST">
-		Email : <input type="text" name="LoginForm" />
-		<br>
-		Password : <input type="password" name="LoginForm" />
-		<br>
-		<input type="submit" value="Login" name="Login" />
-		<input type="submit" value="Join" name="Join" />
+	<form action="/login" method="POST">
+		Email : <input type="text" name="LoginForm" /> <br> Password : <input
+			type="password" name="LoginForm" /> <br> <input type="submit"
+			value="Login" name="Login" /> <input type="submit" value="Join"
+			name="Join" />
 	</form>
-	
-	<html:form action="/login">
-		Email : <html:text name="LoginForm" property="userName" />
-		<br>
-		Password : <html:password name="LoginForm" property="password" />
-		<br>
-		<html:submit value="Login2" />
-	</html:form>
-	
-<%-- 	
+--%>
+
+
+
+
+	<%-- 	
 	<html:form action="/join">
 		<html:submit value="Join" />
 	</html:form>
