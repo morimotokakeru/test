@@ -8,6 +8,7 @@
 	<!-- ActionFormの定義を行います -->
 	<form-beans>
 		<form-bean name="userView" type="users.UserViewForm" />
+		<form-bean name="userDetail" type="users.UserDetailForm"/>
 		<form-bean name="update" type="users.UpdateForm" />
 	</form-beans>
 
@@ -17,11 +18,15 @@
 			type="users.UserViewAction">
 			<forward name="ok" path="/WEB-INF/views/userview.jsp"></forward>
 		</action>
+		<action path="/userDetail" name="userDetail" scope="request"
+			type="users.UserDetailAction">
+			<forward name="ok" path="/WEB-INF/views/userdetail.jsp"></forward>
 		<action path="/users/update" name="update" scope="request"
 			type="users.UpdateAction">
 			<forward name="ok" path="/WEB-INF/views/update.jsp" />
 		</action>
 	</action-mappings>
+	
 
 
 
