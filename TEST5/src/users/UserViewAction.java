@@ -14,13 +14,13 @@ import org.apache.struts.action.ActionMapping;
 import dao.UserDao;
 
 public class UserViewAction extends Action {
-	public ActionForward execute (ActionMapping mapping,ActionForm _form,HttpServletRequest request,HttpServletResponse response)throws SQLException,IOException{
+	public ActionForward execute(ActionMapping mapping, ActionForm _form, HttpServletRequest request,
+			HttpServletResponse response) throws SQLException, IOException {
 
 		UserViewForm form = (UserViewForm) _form;
 		UserDao dao = new UserDao();
-		request.setAttribute("beans",dao.getUserAll(form));
+		request.setAttribute("beans", dao.getUserAll(form));
 		return mapping.findForward("ok");
-
 
 	}
 
