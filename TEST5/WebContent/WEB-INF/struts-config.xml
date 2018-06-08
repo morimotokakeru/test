@@ -9,15 +9,18 @@
 	<form-beans>
 		<form-bean name="userView" type="users.UserViewForm" />
 		<!-- login -->
-		<form-bean name="LoginForm" type="login.LoginForm" />
+		<form-bean name="LoginActionForm" type="login.LoginActionForm" />
 	</form-beans>
 
 	<!-- ActionとActionFormとURLのマッピング設定を行います -->
 	<action-mappings>
 		<!-- login -->
-		<action path="/login" type="login.LoginAction" name="LoginForm" input="/login.jsp" scope="session" >
-			<forward name="success" path="/WEB-INF/views/success.jsp" />
+		<action path="/login"  name="LoginActionForm"  type="login.LoginAction" input="login.jsp" 
+			scope="request" >
+			
+			<forward name="success" path="/users.do" redirect="true" />
 			<forward name="failure" path="/WEB-INF/views/failure.jsp" />
+			
 		</action>
 		
 		<!-- <action path="/login" input="/login.jsp" name="LoginForm"

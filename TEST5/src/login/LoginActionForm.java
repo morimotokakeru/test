@@ -11,7 +11,7 @@ import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 
-public class LoginForm extends org.apache.struts.action.ActionForm {
+public class LoginActionForm extends org.apache.struts.action.ActionForm {
     
     private String userName;
 
@@ -21,7 +21,7 @@ public class LoginForm extends org.apache.struts.action.ActionForm {
     /**
      *
      */
-    public LoginForm() {
+    public LoginActionForm() {
         super();
         // TODO Auto-generated constructor stub
     }

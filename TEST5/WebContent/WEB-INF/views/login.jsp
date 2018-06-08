@@ -1,3 +1,4 @@
+<%@page import="dao.AdminDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -38,19 +39,35 @@
 		<table>
 			<tr>
 				<td bgcolor="skyblue">Email :</td>
-				<td><html:text name="LoginForm" property="userName"
+				<td><html:text name="LoginActionForm" property="userName"
 						maxlength="100" /></td>
 			</tr>
 			<tr>
 				<td bgcolor="skyblue">Password :</td>
-				<td><html:password name="LoginForm" property="password"
+				<td><html:password name="LoginActionForm" property="password"
 						maxlength="100" /></td>
 			</tr>
 		</table>
 		<html:submit value="Login" />
 	</html:form>
 
-	<%-- <div>
+	<%
+		String msg = request.getParameter("msg");
+		
+		if(msg!=null && msg.equals("0"))
+		{
+			out.println("<br>");
+			out.println("<font color='red' size='5'>パスワードをご確認ください。</font>");
+		}
+		else if(msg!=null && msg.equals("-1"))
+		{
+			out.println("<br>");
+			out.println("<font color='red' size='5'>メールアドレスをご確認ください。</font>");
+		}
+	%>
+
+
+	<%-- 	 <div>
 		<form action="/login" name="LoginForm" method="POST" 
 			onsubmit="return checkValue()">
 
@@ -84,8 +101,8 @@
 				out.print("<font color='red' size ='5'>パスワードをご確認ください。</font>");
 			}
 		%>
-	</div> 
- --%>
+	</div>  --%>
+
 
 
 	<%-- <div style="color: red">

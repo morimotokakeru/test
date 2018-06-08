@@ -11,6 +11,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Login Success. Welcome <bean:write name="LoginForm" property="userName"></bean:write></h1>
+        <h1>Login Success. Welcome <bean:write name="LoginActionForm" property="userName"></bean:write></h1>
     </body>
 </html>
