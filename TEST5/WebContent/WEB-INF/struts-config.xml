@@ -8,12 +8,32 @@
 	<!-- ActionFormの定義を行います -->
 	<form-beans>
 		<form-bean name="userView" type="users.UserViewForm" />
+
+		<!-- login -->
+		<form-bean name="LoginActionForm" type="login.LoginActionForm" />
+
 		<form-bean name="userDetail" type="users.UserDetailForm"/>
 		<form-bean name="update" type="users.UpdateForm" />
+
 	</form-beans>
 
 	<!-- ActionとActionFormとURLのマッピング設定を行います -->
 	<action-mappings>
+		<!-- login -->
+		<action path="/login"  name="LoginActionForm"  type="login.LoginAction" input="login.jsp" 
+			scope="request" >
+			
+			<forward name="success" path="/users.do" redirect="true" />
+			<forward name="failure" path="/WEB-INF/views/failure.jsp" />
+			
+		</action>
+		
+		<!-- <action path="/login" input="/login.jsp" name="LoginForm"
+			scope="session" type="login.LoginAction">
+			<forward name="success" path="/WEB-INF/views/success.jsp" />
+			<forward name="failure" path="/WEB-INF/views/failure.jsp" />
+		</action>
+		 -->
 		<action path="/users" name="userView" scope="request"
 			type="users.UserViewAction">
 			<forward name="ok" path="/WEB-INF/views/userview.jsp"></forward>
@@ -32,11 +52,7 @@
 	<message-resources parameter="resource" />
 
 	<!-- Validatorプラグインの設定 -->
-	<!-- <plug-in
-		className="org.apache.struts.validator.ValidatorPlugIn">
-		<set-property property="pathnames"
-			value="/org/apache/struts/validator/validator-rules.xml,
-				/WEB-INF/validation.xml" />
-	</plug-in>
- -->
+	<!-- <plug-in className="org.apache.struts.validator.ValidatorPlugIn"> <set-property 
+		property="pathnames" value="/org/apache/struts/validator/validator-rules.xml, 
+		/WEB-INF/validation.xml" /> </plug-in> -->
 </struts-config>
