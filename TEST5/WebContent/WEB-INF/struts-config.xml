@@ -10,30 +10,38 @@
 		<form-bean name="userView" type="users.UserViewForm" />
 
 		<!-- login -->
-		<form-bean name="LoginActionForm" type="login.LoginActionForm" />
+		<form-bean name="LoginActionForm"
+			type="login.LoginActionForm" />
+		<!-- Join -->
 
-		<form-bean name="userDetail" type="users.UserDetailForm"/>
+		<form-bean name="userDetail" type="users.UserDetailForm" />
 		<form-bean name="update" type="users.UpdateForm" />
-
 	</form-beans>
-
+	
+	<global-forwards>
+		<forward name="join" path="join.do" />
+	</global-forwards>
+	
 	<!-- ActionとActionFormとURLのマッピング設定を行います -->
 	<action-mappings>
-		<!-- login -->
-		<action path="/login"  name="LoginActionForm"  type="login.LoginAction" input="/WEB-INF/views/login.jsp" 
-			scope="request" >
+		<!-- Join -->
+		<action path="/join" forward="/WEB-INF/views/join.jsp" name="" input=""/>
 			
+
+		<!-- login -->
+		<action path="/login" name="LoginActionForm"
+			type="login.LoginAction" input="/WEB-INF/views/login.jsp"
+			scope="session">
 			<forward name="success" path="/users.do" redirect="true" />
 			<forward name="failure" path="/WEB-INF/views/failure.jsp" />
-			
+
+			<!-- <forward name="failure" path="/WEB-INF/views/failure.jsp" /> -->
+
 		</action>
-		
-		<!-- <action path="/login" input="/login.jsp" name="LoginForm"
-			scope="session" type="login.LoginAction">
-			<forward name="success" path="/WEB-INF/views/success.jsp" />
-			<forward name="failure" path="/WEB-INF/views/failure.jsp" />
-		</action>
-		 -->
+
+		<!-- <action path="/login" input="/login.jsp" name="LoginForm" scope="session" 
+			type="login.LoginAction"> <forward name="success" path="/WEB-INF/views/success.jsp" 
+			/> <forward name="failure" path="/WEB-INF/views/failure.jsp" /> </action> -->
 		<action path="/users" name="userView" scope="request"
 			type="users.UserViewAction">
 			<forward name="ok" path="/WEB-INF/views/userview.jsp"></forward>
