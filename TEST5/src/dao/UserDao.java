@@ -53,6 +53,9 @@ public class UserDao {
 			if (form.getStreet1() != null && !form.getStreet1().isEmpty()) {
 				Sql.append(" and STREET1 like ?");
 			}
+			if (form.getStreet2() != null && !form.getStreet2().isEmpty()) {
+				Sql.append(" and STREET2 like ?");
+			}
 			if (form.getTell() != null && !form.getTell().isEmpty()) {
 				Sql.append(" and TELL like ?");
 			}
@@ -102,6 +105,9 @@ public class UserDao {
 			if (form.getStreet1() != null && !form.getStreet1().isEmpty()) {
 				st.setString(++index, "%" + form.getStreet1() + "%");
 			}
+			if (form.getStreet2() != null && !form.getStreet2().isEmpty()) {
+				st.setString(++index, "%" + form.getStreet2() + "%");
+			}
 			if (form.getTell() != null && !form.getTell().isEmpty()) {
 				st.setString(++index, "%" + form.getTell() + "%");
 			}
@@ -137,6 +143,8 @@ public class UserDao {
 				user.setMobile(rs.getString("MOBILE"));
 				user.setEmail(rs.getString("EMAIL"));
 				user.setPositionName(rs.getString("POSITION_NAME"));
+				user.setStreet2(rs.getString("STREET2"));
+				user.setComment1(rs.getString("COMMENT1"));
 				users.add(user);
 			}
 		} catch (SQLException e) {
@@ -217,6 +225,8 @@ public class UserDao {
 			user.setTell(rs.getString("TELL"));
 			user.setMobile(rs.getString("MOBILE"));
 			user.setEmail(rs.getString("EMAIL"));
+			user.setStreet2(rs.getString("STREET2"));
+			user.setComment1(rs.getString("COMMENT1"));
 			users.add(user);
 			}
 		} catch (SQLException e) {
