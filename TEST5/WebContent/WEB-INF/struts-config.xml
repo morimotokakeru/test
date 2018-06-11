@@ -20,7 +20,7 @@
 	<!-- ActionとActionFormとURLのマッピング設定を行います -->
 	<action-mappings>
 		<!-- login -->
-		<action path="/login"  name="LoginActionForm"  type="login.LoginAction" input="login.jsp" 
+		<action path="/login"  name="LoginActionForm"  type="login.LoginAction" input="/WEB-INF/views/login.jsp" 
 			scope="request" >
 			
 			<forward name="success" path="/users.do" redirect="true" />
