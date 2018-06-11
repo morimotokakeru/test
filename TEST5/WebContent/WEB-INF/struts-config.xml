@@ -17,6 +17,8 @@
 			type="users.UserViewAction">
 			<forward name="ok" path="/WEB-INF/views/userview.jsp"></forward>
 		</action>
+		
+		
 		<action path="/users/update" name="update" scope="request"
 			type="users.UpdateAction">
 			<forward name="ok" path="/WEB-INF/views/update.jsp" />
