@@ -136,6 +136,7 @@ public class UserDao {
 				user.setTell(rs.getString("TELL"));
 				user.setMobile(rs.getString("MOBILE"));
 				user.setEmail(rs.getString("EMAIL"));
+				user.setPositionName(rs.getString("POSITION_NAME"));
 				users.add(user);
 			}
 		} catch (SQLException e) {

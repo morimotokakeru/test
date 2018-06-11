@@ -7,6 +7,7 @@ public class AdminBean {
 	private String firstName;
 	private String lastName;
 	private String email;
+	private String password;
 	private Date registDate;
 	private Date updateDate;
 	private int loginMissCount;
@@ -30,6 +31,12 @@ public class AdminBean {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public Date getRegistDate() {
 		return registDate;
