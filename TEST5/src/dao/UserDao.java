@@ -187,7 +187,7 @@ public class UserDao {
 
 	}
 
-	@SuppressWarnings("null")
+
 	public List<UserBean> getOneRecode(int userId) {
 		DBConnector db = new DBConnector();
 		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
@@ -196,7 +196,7 @@ public class UserDao {
 		try {
 			st = db.connect().prepareStatement("SELECT FROM CUSTOMER WHERE USER_ID = ?");
 			st.setInt(1, userId);
-
+			rs = st.executeQuery();
 			users = new ArrayList<>();
 			while (rs.next()) {// 次のレコードに下がれればの条件式//
 				UserBean user = new UserBean();
