@@ -1,17 +1,15 @@
 package beans;
 
-import java.util.Date;
-
 public class AdminBean {
 
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String password;
-	private Date registDate;
-	private Date updateDate;
+	private String registDate;
+	private String updateDate;
 	private int loginMissCount;
-	private Date loginDate;
+	private String loginDate;
 
 
 	public String getFirstName() {
@@ -38,16 +36,16 @@ public class AdminBean {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Date getRegistDate() {
+	public String getRegistDate() {
 		return registDate;
 	}
-	public void setRegistDate(Date registDate) {
+	public void setRegistDate(String registDate) {
 		this.registDate = registDate;
 	}
-	public Date getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(Date updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
 	public int getLoginMissCount() {
@@ -56,10 +54,10 @@ public class AdminBean {
 	public void setLoginMissCount(int loginMissCount) {
 		this.loginMissCount = loginMissCount;
 	}
-	public Date getLoginDate() {
+	public String getLoginDate() {
 		return loginDate;
 	}
-	public void setLoginDate(Date loginDate) {
+	public void setLoginDate(String loginDate) {
 		this.loginDate = loginDate;
 	}
 

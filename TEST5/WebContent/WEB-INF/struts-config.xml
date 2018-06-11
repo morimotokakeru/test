@@ -13,6 +13,8 @@
 		<form-bean name="LoginActionForm"
 			type="login.LoginActionForm" />
 		<!-- Join -->
+		<form-bean name="LoginActionForm"
+			type="login.LoginActionForm" />
 
 		<form-bean name="userDetail" type="users.UserDetailForm" />
 		<form-bean name="update" type="users.UpdateForm" />
@@ -26,6 +28,9 @@
 	<action-mappings>
 		<!-- Join -->
 		<action path="/join" forward="/WEB-INF/views/join.jsp" name="" input=""/>
+		<action path="/insert" name="JoinActionFrom" type="login.LoginAction" input="/WEB-INF/views/join.jsp" scope="request">
+			<forward name="success" path="/login.do" redirect="true" />
+		</action>
 			
 
 		<!-- login -->
