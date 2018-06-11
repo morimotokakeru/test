@@ -193,30 +193,31 @@ public class UserDao {
 		List<UserBean> users = null;
 		ResultSet rs = null;
 		try {
-			st = db.connect().prepareStatement("SELECT FROM CUSTOMER WHERE USER_ID = ?");
+			st = db.connect().prepareStatement("SELECT * FROM CUSTOMER WHERE USER_ID = ?");
 			st.setInt(1, userId);
+			rs = st.executeQuery();// 実行と結果の戻り//
 
 			users = new ArrayList<>();
+			UserBean user = new UserBean();
 			while (rs.next()) {// 次のレコードに下がれればの条件式//
-				UserBean user = new UserBean();
-				user.setUserId(rs.getInt("USER_ID"));
-				user.setFirstName(rs.getString("FIRST_NAME"));
-				user.setFirstNameKana(rs.getString("FIRST_NAME_KANA"));
-				user.setLastName(rs.getString("LAST_NAME"));
-				user.setLastNameKana(rs.getString("LAST_NAME_KANA"));
-				user.setTitle(rs.getString("TITLE"));
-				user.setSex(rs.getString("SEX"));
-				user.setClassification1(rs.getString("CLASSIFICATION1"));
-				user.setClassification2(rs.getString("CLASSIFICATION2"));
-				user.setCompany(rs.getString("COMPANY"));
-				user.setDepartment1(rs.getString("DEPARTMENT1"));
-				user.setDepartment2(rs.getString("DEPARTMENT2"));
-				user.setPostal(rs.getString("POSTAL"));
-				user.setStreet1(rs.getString("STREET1"));
-				user.setTell(rs.getString("TELL"));
-				user.setMobile(rs.getString("MOBILE"));
-				user.setEmail(rs.getString("EMAIL"));
-				users.add(user);
+			user.setUserId(rs.getInt("USER_ID"));
+			user.setFirstName(rs.getString("FIRST_NAME"));
+			user.setFirstNameKana(rs.getString("FIRST_NAME_KANA"));
+			user.setLastName(rs.getString("LAST_NAME"));
+			user.setLastNameKana(rs.getString("LAST_NAME_KANA"));
+			user.setTitle(rs.getString("TITLE"));
+			user.setSex(rs.getString("SEX"));
+			user.setClassification1(rs.getString("CLASSIFICATION1"));
+			user.setClassification2(rs.getString("CLASSIFICATION2"));
+			user.setCompany(rs.getString("COMPANY"));
+			user.setDepartment1(rs.getString("DEPARTMENT1"));
+			user.setDepartment2(rs.getString("DEPARTMENT2"));
+			user.setPostal(rs.getString("POSTAL"));
+			user.setStreet1(rs.getString("STREET1"));
+			user.setTell(rs.getString("TELL"));
+			user.setMobile(rs.getString("MOBILE"));
+			user.setEmail(rs.getString("EMAIL"));
+			users.add(user);
 			}
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック

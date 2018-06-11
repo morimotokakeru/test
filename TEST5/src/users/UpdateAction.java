@@ -31,8 +31,8 @@ public class UpdateAction extends Action {
 		HttpServletResponse response) {
 		UpdateForm form = (UpdateForm)_form;
 		UserDao dao = new UserDao();// 実際処理する為のクラス//
-
-//		request.setAttribute("list", dao.getOneRecode(form.getUserId()));
+//		form.getUserId()
+		request.setAttribute("beans", dao.getOneRecode(1002));
 		request.setAttribute("titleList", dao.doTitle());
 		return mapping.findForward("ok");
 
