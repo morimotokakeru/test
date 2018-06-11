@@ -24,6 +24,7 @@ public class UserBean {
 	private String email;
 	private String upDate;
 	private String changeDate;
+	private String comment1;
 
 	//プルダウン用変数
 	private String titleName;
@@ -165,6 +166,12 @@ public class UserBean {
 	}
 	public void setTitleName(String titleName) {
 		this.titleName = titleName;
+	}
+	public String getComment1() {
+		return comment1;
+	}
+	public void setComment1(String comment1) {
+		this.comment1 = comment1;
 	}
 
 }

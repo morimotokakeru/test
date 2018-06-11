@@ -26,6 +26,7 @@ public class UpdateForm extends ActionForm {
 	private String email;
 	private String upDate;
 	private String changeDate;
+	private String comment1;
 
 	private int select = 0;
 
@@ -166,6 +167,12 @@ public class UpdateForm extends ActionForm {
 	}
 	public void setSelect(int select) {
 		this.select = select;
+	}
+	public String getComment1() {
+		return comment1;
+	}
+	public void setComment1(String comment1) {
+		this.comment1 = comment1;
 	}
 
 }
