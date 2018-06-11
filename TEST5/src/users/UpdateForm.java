@@ -1,6 +1,8 @@
-package beans;
+package users;
 
-public class UserBean {
+import org.apache.struts.action.ActionForm;
+
+public class UpdateForm extends ActionForm {
 
 	private int userId;
 	private String firstName;
@@ -25,8 +27,7 @@ public class UserBean {
 	private String upDate;
 	private String changeDate;
 
-	//プルダウン用変数
-	private String titleName;
+	private int select = 0;
 
 	public int getUserId() {
 		return userId;
@@ -160,11 +161,11 @@ public class UserBean {
 	public void setChangeDate(String changeDate) {
 		this.changeDate = changeDate;
 	}
-	public String getTitleName() {
-		return titleName;
+	public int getSelect() {
+		return select;
 	}
-	public void setTitleName(String titleName) {
-		this.titleName = titleName;
+	public void setSelect(int select) {
+		this.select = select;
 	}
 
 }
