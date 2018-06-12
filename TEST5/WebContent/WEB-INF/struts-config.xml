@@ -12,7 +12,7 @@
 		<!-- login -->
 		<form-bean name="LoginActionForm" type="login.LoginActionForm" />
 
-		<form-bean name="userDetail" type="users.UserDetailForm"/>
+		<form-bean name="userdetail" type="users.UserDetailForm"/>
 		<form-bean name="update" type="users.UpdateForm" />
 	</form-beans>
 
@@ -37,7 +37,7 @@
 			type="users.UserViewAction">
 			<forward name="ok" path="/WEB-INF/views/userview.jsp"></forward>
 		</action>
-		<action path="/userDetail" name="userDetail" scope="request"
+		<action path="/userdetail" name="userdetail" scope="request"
 			type="users.UserDetailAction">
 			<forward name="ok" path="/WEB-INF/views/userdetail.jsp"></forward>
 		</action>

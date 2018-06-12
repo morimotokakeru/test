@@ -69,6 +69,8 @@ public class UserDao {
 			if (form.getEmail() != null && !form.getEmail().isEmpty()) {
 				Sql.append(" and EMAIL like ?");
 			}
+			Sql.append(" ORDER BY  USER_ID ASC");
+			
 
 			// ドライバロード.DB接続.SQLをセット
 			st = db.connect().prepareStatement(Sql.toString());
@@ -197,7 +199,7 @@ public class UserDao {
 		}
 
 	}
-
+  
 	//Oneレコード分データ
 	public List<UserBean> getOneRecode(int userId) {
 		DBConnector db = new DBConnector();
