@@ -31,9 +31,8 @@ public class UpdateAction extends Action {
 		HttpServletResponse response) {
 		UpdateForm form = (UpdateForm)_form;
 		UserDao dao = new UserDao();// 実際処理する為のクラス//
-//		form.getUserId()
-		request.setAttribute("beans", dao.getOneRecode(1002));
-		request.setAttribute("titleList", dao.doTitle());
+		request.setAttribute("beans", dao.getOneRecode(form.getUserId()));
+		request.setAttribute("pullDownList", dao.doPullDown());
 		return mapping.findForward("ok");
 
 	}
@@ -44,16 +43,9 @@ public class UpdateAction extends Action {
 		UpdateForm form = (UpdateForm)_form;
 		if(form.getSelect() == 1) {
 			request.setAttribute("form",form );
-//			request.setAttribute("bean", dao.getOrdersSet(form.getProjectCode()));
-			/*request.setAttribute("PeriodFrom", form.getPeriodFrom());
-			request.setAttribute("PeriodfromJ", form.getPeriodFromJ());
-			request.setAttribute("PeriodFromJ", form.getPeriodFromH());
-			request.setAttribute("PeriodTo", form.getPeriodTo());
-			request.setAttribute("PeriodToJ", form.getPeriodToJ());
-			request.setAttribute("PeriodToH", form.getPeriodToH());*/
-			return mapping.findForward("1");
+			return mapping.findForward("check");
 		}
 			dao.doUpdate(form);
-			return mapping.findForward("update");
+			return mapping.findForward("view");
 	}
 }
