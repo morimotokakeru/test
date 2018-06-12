@@ -1,5 +1,7 @@
 package beans;
 
+import java.util.Date;
+
 public class UserBean {
 
 	private int userId;
@@ -23,11 +25,8 @@ public class UserBean {
 	private String mobile;
 	private String email;
 	private String upDate;
-	private String changeDate;
+	private Date changeDate;
 	private String comment1;
-
-	//プルダウン用変数
-	private String titleName;
 
 	public int getUserId() {
 		return userId;
@@ -155,17 +154,11 @@ public class UserBean {
 	public void setUpDate(String upDate) {
 		this.upDate = upDate;
 	}
-	public String getChangeDate() {
+	public Date getChangeDate() {
 		return changeDate;
 	}
-	public void setChangeDate(String changeDate) {
+	public void setChangeDate(Date changeDate) {
 		this.changeDate = changeDate;
-	}
-	public String getTitleName() {
-		return titleName;
-	}
-	public void setTitleName(String titleName) {
-		this.titleName = titleName;
 	}
 	public String getComment1() {
 		return comment1;

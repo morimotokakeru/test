@@ -1,5 +1,7 @@
 package users;
 
+import java.sql.Date;
+
 import org.apache.struts.action.ActionForm;
 
 public class UpdateForm extends ActionForm {
@@ -25,7 +27,7 @@ public class UpdateForm extends ActionForm {
 	private String mobile;
 	private String email;
 	private String upDate;
-	private String changeDate;
+	private Date changeDate;
 	private String comment1;
 
 	private int select = 0;
@@ -156,12 +158,7 @@ public class UpdateForm extends ActionForm {
 	public void setUpDate(String upDate) {
 		this.upDate = upDate;
 	}
-	public String getChangeDate() {
-		return changeDate;
-	}
-	public void setChangeDate(String changeDate) {
-		this.changeDate = changeDate;
-	}
+
 	public int getSelect() {
 		return select;
 	}
@@ -173,6 +170,12 @@ public class UpdateForm extends ActionForm {
 	}
 	public void setComment1(String comment1) {
 		this.comment1 = comment1;
+	}
+	public Date getChangeDate() {
+		return changeDate;
+	}
+	public void setChangeDate(Date changeDate) {
+		this.changeDate = changeDate;
 	}
 
 }
