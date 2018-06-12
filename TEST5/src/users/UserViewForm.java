@@ -36,6 +36,9 @@ public class UserViewForm extends ActionForm{
 	private String fax;
 	private String mobile;
 	private String email;
+	private String street2;
+	private String comment1;
+
 	public int getUserId() {
 		return userId;
 	}
@@ -149,6 +152,18 @@ public class UserViewForm extends ActionForm{
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getStreet2() {
+		return street2;
+	}
+	public void setStreet2(String street2) {
+		this.street2 = street2;
+	}
+	public String getComment1() {
+		return comment1;
+	}
+	public void setComment1(String comment1) {
+		this.comment1 = comment1;
 	}
 
 }
