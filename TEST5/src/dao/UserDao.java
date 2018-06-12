@@ -198,6 +198,7 @@ public class UserDao {
 			st = db.connect().prepareStatement("SELECT * FROM CUSTOMER WHERE USER_ID = ?");
 			st.setInt(1, userId);
 			rs = st.executeQuery();// 実行と結果の戻り//
+
 			users = new ArrayList<>();
 			UserBean user = new UserBean();
 			while (rs.next()) {// 次のレコードに下がれればの条件式//

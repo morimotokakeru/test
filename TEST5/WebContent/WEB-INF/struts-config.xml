@@ -41,7 +41,6 @@
 		<action path="/userdetail" name="userdetail" scope="request"
 			type="users.UserDetailAction">
 			<forward name="ok" path="/WEB-INF/views/userdetail.jsp"></forward>
-			
 		</action>
 		<action path="/users/update" name="update" scope="request"
 			type="users.UpdateAction">
