@@ -66,6 +66,8 @@ public class UserDao {
 			if (form.getEmail() != null && !form.getEmail().isEmpty()) {
 				Sql.append(" and EMAIL like ?");
 			}
+			Sql.append(" ORDER BY  USER_ID ASC");
+			
 
 			// ドライバロード.DB接続.SQLをセット
 			st = db.connect().prepareStatement(Sql.toString());
@@ -187,7 +189,6 @@ public class UserDao {
 
 	}
 
-	@SuppressWarnings("null")
 	public List<UserBean> getOneRecode(int userId) {
 		DBConnector db = new DBConnector();
 		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
@@ -207,6 +208,7 @@ public class UserDao {
 			user.setLastNameKana(rs.getString("LAST_NAME_KANA"));
 			user.setTitle(rs.getString("TITLE"));
 			user.setSex(rs.getString("SEX"));
+			user.setPositionName(rs.getString("POSITION_NAME"));
 			user.setClassification1(rs.getString("CLASSIFICATION1"));
 			user.setClassification2(rs.getString("CLASSIFICATION2"));
 			user.setCompany(rs.getString("COMPANY"));

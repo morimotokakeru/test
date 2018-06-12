@@ -18,10 +18,30 @@ public class UserDetailForm extends ActionForm {
 	private String positionName;
 	private int postal;
 	private String street1;
+	private String street2;
 	private String tell;
 	private String fax;
 	private String mobile;
 	private String email;
+	private String comment;
+	
+public String getStreet3() {
+		return street1 + street2;
+	}
+	public void setStreet3(String street3) {
+	}
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+	public String getStreet2() {
+		return street2;
+	}
+	public void setStreet2(String street2) {
+		this.street2 = street2;
+	}
 	public int getUserId() {
 		return userId;
 	}
