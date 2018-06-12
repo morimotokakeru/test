@@ -139,6 +139,7 @@ public class UserDao {
 				user.setDepartment2(rs.getString("DEPARTMENT2"));
 				user.setPostal(rs.getString("POSTAL"));
 				user.setStreet1(rs.getString("STREET1"));
+				user.setFax(rs.getString("FAX"));
 				user.setTell(rs.getString("TELL"));
 				user.setMobile(rs.getString("MOBILE"));
 				user.setEmail(rs.getString("EMAIL"));
@@ -161,12 +162,7 @@ public class UserDao {
 		DBConnector db = new DBConnector();
 		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
 		try {
-			String sql = "UPDATE CUSTOMER SET FIRST_NAME = ?, LAST_NAME = ?,"
-					+ "FIRST_NAME_KANA = ?, LAST_NAME_KANA = ?, TITLE = ?, SEX = ?, "
-					+ "CLASSIFICATION1 = ?, CLASSIFICATION2 = ?, POSITIO_NAME = ?, COMPANY = ?,"
-					+ " DEPARTMENT1 = ?, DEPARTMENT2 = ?, POSTAL = ?, STREET1 = ?,TELL = ?,"
-					+ " FAX = ?, MOBILE = ?, EMAIL = ?, UPDATE_DATE = SYSDATE, CHANGEDATE_DATE = ? "
-					+ "WHERE USER_ID = ?";
+			String sql = "UPDATE CUSTOMER SET FIRST_NAME = ?, LAST_NAME = ?,FIRST_NAME_KANA = ?, LAST_NAME_KANA = ?, TITLE = ?, SEX = ?, CLASSIFICATION1 = ?, CLASSIFICATION2 = ?, POSITION_NAME = ?, COMPANY = ?, DEPARTMENT1 = ?, DEPARTMENT2 = ?, POSTAL = ?, STREET1 = ?,STREET2 = ?, TELL = ?, FAX = ?, MOBILE = ?, EMAIL = ?, UPDATE_DATE = SYSDATE, CHANGEDATE_DATE = TO_DATE(?), COMMENT1 = ? WHERE USER_ID = ?";
 			StringBuilder Sql = new StringBuilder(sql);
 			st = db.connect().prepareStatement(Sql.toString());// 準備//
 			int index = 0;
@@ -178,14 +174,21 @@ public class UserDao {
 			st.setString(++index, form.getSex());
 			st.setString(++index, form.getClassification1());
 			st.setString(++index, form.getClassification2());
+			st.setString(++index, form.getPositionName());
+			st.setString(++index, form.getCompany());
+			st.setString(++index, form.getDepartment1());
+			st.setString(++index, form.getDepartment2());
 			st.setString(++index, form.getPostal());
 			st.setString(++index, form.getStreet1());
+			st.setString(++index, form.getStreet2());
 			st.setString(++index, form.getTell());
 			st.setString(++index, form.getFax());
 			st.setString(++index, form.getMobile());
 			st.setString(++index, form.getEmail());
-			st.setString(++index, form.getChangeDate());
+			st.setDate(++index, form.getChangeDate());
+			st.setString(++index, form.getComment1());
 			st.setInt(++index, form.getUserId());
+			System.out.println(st);
 			st.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -195,7 +198,7 @@ public class UserDao {
 
 	}
 
-	@SuppressWarnings("null")
+	//Oneレコード分データ
 	public List<UserBean> getOneRecode(int userId) {
 		DBConnector db = new DBConnector();
 		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
@@ -208,26 +211,29 @@ public class UserDao {
 			users = new ArrayList<>();
 			UserBean user = new UserBean();
 			while (rs.next()) {// 次のレコードに下がれればの条件式//
-			user.setUserId(rs.getInt("USER_ID"));
-			user.setFirstName(rs.getString("FIRST_NAME"));
-			user.setFirstNameKana(rs.getString("FIRST_NAME_KANA"));
-			user.setLastName(rs.getString("LAST_NAME"));
-			user.setLastNameKana(rs.getString("LAST_NAME_KANA"));
-			user.setTitle(rs.getString("TITLE"));
-			user.setSex(rs.getString("SEX"));
-			user.setClassification1(rs.getString("CLASSIFICATION1"));
-			user.setClassification2(rs.getString("CLASSIFICATION2"));
-			user.setCompany(rs.getString("COMPANY"));
-			user.setDepartment1(rs.getString("DEPARTMENT1"));
-			user.setDepartment2(rs.getString("DEPARTMENT2"));
-			user.setPostal(rs.getString("POSTAL"));
-			user.setStreet1(rs.getString("STREET1"));
-			user.setTell(rs.getString("TELL"));
-			user.setMobile(rs.getString("MOBILE"));
-			user.setEmail(rs.getString("EMAIL"));
-			user.setStreet2(rs.getString("STREET2"));
-			user.setComment1(rs.getString("COMMENT1"));
-			users.add(user);
+				user.setUserId(rs.getInt("USER_ID"));
+				user.setFirstName(rs.getString("FIRST_NAME"));
+				user.setFirstNameKana(rs.getString("FIRST_NAME_KANA"));
+				user.setLastName(rs.getString("LAST_NAME"));
+				user.setLastNameKana(rs.getString("LAST_NAME_KANA"));
+				user.setTitle(rs.getString("TITLE"));
+				user.setSex(rs.getString("SEX"));
+				user.setClassification1(rs.getString("CLASSIFICATION1"));
+				user.setClassification2(rs.getString("CLASSIFICATION2"));
+				user.setCompany(rs.getString("COMPANY"));
+				user.setDepartment1(rs.getString("DEPARTMENT1"));
+				user.setDepartment2(rs.getString("DEPARTMENT2"));
+				user.setPostal(rs.getString("POSTAL"));
+				user.setStreet1(rs.getString("STREET1"));
+				user.setFax(rs.getString("FAX"));
+				user.setTell(rs.getString("TELL"));
+				user.setMobile(rs.getString("MOBILE"));
+				user.setEmail(rs.getString("EMAIL"));
+				user.setStreet2(rs.getString("STREET2"));
+				user.setComment1(rs.getString("COMMENT1"));
+				user.setPositionName(rs.getString("POSITION_NAME"));
+				user.setChangeDate(rs.getDate("CHANGEDATE_DATE"));
+				users.add(user);
 			}
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
@@ -238,27 +244,30 @@ public class UserDao {
 		return users;
 	}
 
-	//プールダウン用、敬称リスト
-	public List<UserBean> doTitle() {
+	//プールダウン用、分類１、分類2、性別、敬称リスト
+	public List<UserBean> doPullDown() {
 		DBConnector db = new DBConnector();
-		List<UserBean> titles = null;
+		List<UserBean> pullDowns = null;
 		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
 		ResultSet rs = null;
 		try {
-			titles = new ArrayList<UserBean>();
-			st = db.connect().prepareStatement("SELECT TITLE_NAME FROM TITLE");
+			pullDowns = new ArrayList<UserBean>();
+			st = db.connect().prepareStatement("SELECT * FROM PULLDOWN");
 			rs = st.executeQuery();
 			while (rs.next()) {
-				UserBean title = new UserBean();
-				title.setTitleName(rs.getString("TITLE_NAME"));
-				titles.add(title);
+				UserBean list = new UserBean();
+				list.setTitle(rs.getString("TITLE_NAME"));
+				list.setSex(rs.getString("SEX"));
+				list.setClassification1(rs.getString("CLASSIFICATION1_NAME"));
+				list.setClassification2(rs.getString("CLASSIFICATION2_NAME"));
+				pullDowns.add(list);
 			}
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		} // 準備//
 
-		return titles;
+		return pullDowns;
 
 	}
 
