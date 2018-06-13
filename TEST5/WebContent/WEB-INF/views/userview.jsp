@@ -11,9 +11,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>検索画面</title>
+<script type="text/javascript">
+	function goModifyForm(){
+		location.href = "info.do";
+	}
+</script>
 </head>
 <body>
-	<h1>ようこそ <bean:write name="LoginActionForm" property="userName"></bean:write></h1>
+	ようこそ
+	<bean:write name="LoginActionForm" property="userName"></bean:write>
+	<input type="button" value="情報の確認・変更" onClick="goModifyForm()" />
 	<h1>★顧客検索一覧画面</h1>
 	<%-- 
 	<h3>
@@ -96,39 +103,39 @@
 	<b>test</b>
 
 
-		<table border="10" summary="hahahaha">
-			<caption>顧客一覧</caption>
+	<table border="10" summary="hahahaha">
+		<caption>顧客一覧</caption>
 
-			<thead>
-				<tr>
-					<th>会社名</th>
-					<th>役職名</th>
-					<th>氏名</th>
+		<thead>
+			<tr>
+				<th>会社名</th>
+				<th>役職名</th>
+				<th>氏名</th>
 
-					<th>性別</th>
-					<th>☆彡</th>
-				</tr>
-			</thead>
-			<tbody>
+				<th>性別</th>
+				<th>☆彡</th>
+			</tr>
+		</thead>
+		<tbody>
 
-				<logic:iterate id="bean" name="beans">
-					<html:form action="/userdetail" method="GET">
-						<tr>
-							 <td><bean:write name="bean" property="company" /></td>
-							<td><bean:write name="bean" property="positionName" /></td>
-							<td><bean:write name="bean" property="firstName" />
-							 	<bean:write name="bean" property="lastName" /> 
-								<bean:write name="bean" property="title" /></td>
-							<td><bean:write name="bean" property="sex" /></td>
-							<html:hidden name="bean" property="userId" />
-							 	<td><html:submit value="詳細表示" /></td>
-						</tr>
-					</html:form>
-				</logic:iterate>
+			<logic:iterate id="bean" name="beans">
+				<html:form action="/userdetail" method="GET">
+					<tr>
+						<td><bean:write name="bean" property="company" /></td>
+						<td><bean:write name="bean" property="positionName" /></td>
+						<td><bean:write name="bean" property="firstName" /> <bean:write
+								name="bean" property="lastName" /> <bean:write name="bean"
+								property="title" /></td>
+						<td><bean:write name="bean" property="sex" /></td>
+						<html:hidden name="bean" property="userId" />
+						<td><html:submit value="詳細表示" /></td>
+					</tr>
+				</html:form>
+			</logic:iterate>
 
-			</tbody>
-		</table>
-	
+		</tbody>
+	</table>
+
 
 
 

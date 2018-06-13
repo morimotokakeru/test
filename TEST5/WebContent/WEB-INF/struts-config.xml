@@ -15,16 +15,16 @@
 		<!-- Join -->
 		<form-bean name="JoinActionForm"
 			type="join.JoinActionForm" />
-
-
+			
 
 		<form-bean name="userdetail" type="users.UserDetailForm"/>
-
 		<form-bean name="update" type="users.UpdateForm" />
+		
 	</form-beans>
 
 	<global-forwards>
 		<forward name="join" path="join.do" />
+		<forward name="info" path="info.do" />
 	</global-forwards>
 
 	<!-- ActionとActionFormとURLのマッピング設定を行います -->
@@ -37,6 +37,11 @@
 			scope="request">
 			<forward name="failure" path="/WEB-INF/views/failure.jsp" />
 			<forward name="success" path="/login.do" redirect="true" />
+		</action>
+		<action path="/info" forward="/WEB-INF/views/UserInfoForm.jsp"/>
+		<action path="/info/move" forward="/WEB-INF/views/UpdateForm.jsp"/>
+		<action path="/info/update" name="" type="" input="" scope="session">
+		
 		</action>
 
 

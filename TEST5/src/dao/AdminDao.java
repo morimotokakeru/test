@@ -1,8 +1,15 @@
 package dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
+import org.apache.struts.action.ActionForm;
+
+import DBconnector.DBConnect;
 import DBconnector.DBConnector;
+import beans.AdminBean;
+import join.UpdateActionForm;
 
 public class AdminDao {
 
@@ -18,6 +25,49 @@ public class AdminDao {
 		return instance;
 	}
 
+	public AdminBean getUserInfo(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		AdminBean member = null;
+
+		try {
+			StringBuffer query = new StringBuffer();
+			query.append("SELECT * FROM ADMIN WHERE EMAIL=?");
+
+			conn = DBConnect.getConnection();
+			pstmt = conn.prepareStatement(query.toString());
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				member = new AdminBean();
+				member.setEmail(rs.getString("email"));
+				member.setPassword(rs.getString("password"));
+				member.setFirstName(rs.getString("first_name"));
+				member.setLastName(rs.getString("last_name"));
+			}
+			return member;
+		} catch (
+
+		Exception sqle) {
+			throw new RuntimeException(sqle.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+					pstmt = null;
+				}
+				if (conn != null) {
+					conn.close();
+					conn = null;
+				}
+			} catch (Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+	}
+
 	public int loginCheck(String id, String pw) {
 		DBConnector conn = new DBConnector();
 		PreparedStatement st = null;
@@ -29,7 +79,7 @@ public class AdminDao {
 		try {
 			StringBuffer query = new StringBuffer();
 			query.append("SELECT PASSWORD FROM ADMIN WHERE EMAIL=?");
-			
+
 			st = conn.connect().prepareStatement(query.toString());
 			st.setString(1, id);
 			rs = st.executeQuery();
@@ -55,56 +105,85 @@ public class AdminDao {
 			}
 		}
 	}
-}
-/*
-	public List<AdminBean> getAdmin(LoginActionForm form) {
-		DBConnector db = new DBConnector();
-		List<AdminBean> adminInfo = null;
-		PreparedStatement st = null;
-		ResultSet rs = null;
+
+	public void doUpdate(String id, UpdateActionForm form) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
 
 		try {
-			String sql = "SELECT * FROM CUSTOMER WHERE 1=1";
+			StringBuffer query = new StringBuffer();
+			query.append("UPDATE ADMIN SET");
+			query.append(" PASSWORD=?, FIRST_NAME=?, LAST_NAME=?");
+			query.append(" WHERE ID=?");
+			
+			conn = DBConnect.getConnection();
+			pstmt = conn.prepareStatement(query.toString());
+			
+			conn.setAutoCommit(false);
+			
+			pstmt.setString(1, form.getPassword());
+			pstmt.setString(2, form.getFirstname());
+			pstmt.setString(3, form.getLastname());
+			pstmt.setString(4, id);
+			
+			pstmt.executeUpdate();
+			
+			conn.commit();
+			
+		} catch (
 
-			StringBuilder Sql = new StringBuilder(sql);
-			if (form.getUserName() != null && !form.getUserName().isEmpty()) {
-				Sql.append(" and EMAIL like ?");
-			}
-			if (form.getPassword() != null && !form.getPassword().isEmpty()) {
-				Sql.append(" and PASSWORD like ?");
-			}
-			st = db.connect().prepareStatement(Sql.toString());
-
-			int index = 0;
-
-			if (form.getUserName() != null && !form.getUserName().isEmpty()) {
-				st.setString(++index, "%" + form.getUserName() + "%");
-			}
-			if (form.getPassword() != null && !form.getPassword().isEmpty()) {
-				st.setString(++index, "%" + form.getPassword() + "%");
-			}
-
-			rs = st.executeQuery();
-			adminInfo = new ArrayList<>();
-			while (rs.next()) {
-				AdminBean admin = new AdminBean();
-				admin.setEmail(rs.getString("EMAIL"));
-				admin.setPassword(rs.getString("PASSWORD"));
-
-				adminInfo.add(admin);
-				System.out.println(adminInfo);
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
+		Exception sqle) {
+			throw new RuntimeException(sqle.getMessage());
 		} finally {
-			db.close(st, rs);
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+					pstmt = null;
+				}
+				if (conn != null) {
+					conn.close();
+					conn = null;
+				}
+			} catch (Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
 		}
-		return adminInfo;
-
 	}
-
-}*/
+}
+/*
+ * public List<AdminBean> getAdmin(LoginActionForm form) { DBConnector db = new
+ * DBConnector(); List<AdminBean> adminInfo = null; PreparedStatement st = null;
+ * ResultSet rs = null;
+ * 
+ * try { String sql = "SELECT * FROM CUSTOMER WHERE 1=1";
+ * 
+ * StringBuilder Sql = new StringBuilder(sql); if (form.getUserName() != null &&
+ * !form.getUserName().isEmpty()) { Sql.append(" and EMAIL like ?"); } if
+ * (form.getPassword() != null && !form.getPassword().isEmpty()) {
+ * Sql.append(" and PASSWORD like ?"); } st =
+ * db.connect().prepareStatement(Sql.toString());
+ * 
+ * int index = 0;
+ * 
+ * if (form.getUserName() != null && !form.getUserName().isEmpty()) {
+ * st.setString(++index, "%" + form.getUserName() + "%"); } if
+ * (form.getPassword() != null && !form.getPassword().isEmpty()) {
+ * st.setString(++index, "%" + form.getPassword() + "%"); }
+ * 
+ * rs = st.executeQuery(); adminInfo = new ArrayList<>(); while (rs.next()) {
+ * AdminBean admin = new AdminBean(); admin.setEmail(rs.getString("EMAIL"));
+ * admin.setPassword(rs.getString("PASSWORD"));
+ * 
+ * adminInfo.add(admin); System.out.println(adminInfo); }
+ * 
+ * } catch (SQLException e) { e.printStackTrace(); } finally { db.close(st, rs);
+ * } return adminInfo;
+ * 
+ * }
+ * 
+ * }
+ */
 
 /**
  * Servlet implementation class AdminDao
