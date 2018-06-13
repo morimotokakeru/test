@@ -8,6 +8,7 @@ import java.util.List;
 
 import DBconnector.DBConnector;
 import beans.UserBean;
+import users.DeleteForm;
 import users.UpdateForm;
 import users.UserViewForm;
 
@@ -272,5 +273,17 @@ public class UserDao {
 		return pullDowns;
 
 	}
-
+	//顧客データ削除用
+		public void doDelete(DeleteForm form) throws SQLException {
+			DBConnector db = new DBConnector();
+			PreparedStatement st = null;
+			st = db.connect().prepareStatement("DELETE FROM CUSTOMER WHERE USER_ID = ?");
+			try {
+				st.setInt(1, form.getUserId());
+			} catch (SQLException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			}
+			st.executeUpdate();
+		}
 }

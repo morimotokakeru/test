@@ -20,7 +20,7 @@
 		<caption>顧客詳細</caption>
 
 			<logic:iterate id="bean" name="bean">
-			<html:form action="/users/update" method="GET">
+			
 				<thead>
 					<tr>
 						<th>会社名</th>
@@ -74,12 +74,18 @@
 						<th>性別</th>
 						<td><bean:write name="bean" property="sex" /></td>
 						<th>☆彡</th>
-						<td><%-- <html:form action="/users/update" method="GET"> --%>
-							<html:hidden name ="bean" property="userId" />
-							<html:submit value="更新する" /></td>
+						<td><html:form action="/users/update" method="GET">
+								<html:hidden name ="bean" property="userId" />
+							<html:submit value="更新する" /></html:form>
+							
+							<html:form action="/users/delete" method="GET">
+								<html:hidden name ="bean" property="userId"/>
+								<html:submit value="削除"></html:submit>
+							</html:form></td>
+
 					</tr>
 					</thead>
-				</html:form>
+				
 
 				
 			</logic:iterate>
@@ -87,9 +93,8 @@
 		
 
 	</table>	
-			 <html:form action="/users" method="GET"> 
-
-			<html:submit value="戻る" />
+	<html:form action="/users" method="GET"> 
+	 		<html:submit value="戻る" />
 	</html:form>
 
 </body>

@@ -21,6 +21,7 @@
 		<form-bean name="userdetail" type="users.UserDetailForm"/>
 
 		<form-bean name="update" type="users.UpdateForm" />
+		<form-bean name="delete" type="users.DeleteForm" />
 		<form-bean name="new" type="users.NewForm" />
 	</form-beans>
 
@@ -68,12 +69,17 @@
 			type="users.UpdateAction">
 			<forward name="ok" path="/WEB-INF/views/update.jsp" />
 			<forward name="check" path="/WEB-INF/views/updateC.jsp" />
-			<forward name="view" path="/users.do" redirect="true" />
+			<forward name="view" path="/users.do" redirect="true" /> 
+		</action>
+		<action path="/users/delete" name="delete" scope="request" type="users.DeleteAction">
+			<forward name="ok" path="/WEB-INF/views/delete.jsp" />
+			<forward name="delete" path="/users.do" redirect="true" />
 		</action>
 		<action path="/users/new" name="new" scope="request" type="users.NewAction">
 			<forward name="ok" path="/WEB-INF/views/new.jsp" />
 		</action>
-	</action-mappings>
+			
+ 	</action-mappings>
 
 	<!--メッセージリソースファイルを設定 -->
 	<message-resources parameter="resource" />
