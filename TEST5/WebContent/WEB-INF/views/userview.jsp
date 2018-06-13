@@ -13,7 +13,7 @@
 <title>検索画面</title>
 </head>
 <body>
-	<h1>ようこそ <bean:write name="LoginActionForm" property="userName"></bean:write></h1>
+	<%-- <h1>ようこそ <bean:write name="LoginActionForm" property="userName"></bean:write></h1> --%>
 	<h1>★顧客検索一覧画面</h1>
 	<%--
 	<h3>
