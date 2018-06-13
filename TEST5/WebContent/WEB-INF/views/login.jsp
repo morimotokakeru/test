@@ -35,8 +35,9 @@
 </script> -->
 </head>
 <body>
-	<html:form action="/login">
-		<table>
+
+	<table>
+		<html:form action="/login">
 			<tr>
 				<td bgcolor="skyblue">Email :</td>
 				<td><html:text name="LoginActionForm" property="userName"
@@ -47,20 +48,25 @@
 				<td><html:password name="LoginActionForm" property="password"
 						maxlength="100" /></td>
 			</tr>
-		</table>
-		<html:submit value="Login" />
-	</html:form>
+			<tr>
+				<td><html:submit value="Login" /></td>
+			</tr>
+		</html:form>
+	</table>
+
+	<html:link action="/join">
+		<html:submit value="Join" />
+	</html:link>
+
+
 
 	<%
 		String msg = request.getParameter("msg");
-		
-		if(msg!=null && msg.equals("0"))
-		{
+
+		if (msg != null && msg.equals("0")) {
 			out.println("<br>");
 			out.println("<font color='red' size='5'>パスワードをご確認ください。</font>");
-		}
-		else if(msg!=null && msg.equals("-1"))
-		{
+		} else if (msg != null && msg.equals("-1")) {
 			out.println("<br>");
 			out.println("<font color='red' size='5'>メールアドレスをご確認ください。</font>");
 		}

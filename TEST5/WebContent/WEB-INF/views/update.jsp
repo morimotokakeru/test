@@ -11,6 +11,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>顧客情報更新</title>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/CSS/users.css"type="text/css"/>
+<script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
 </head>
 <body>
 	<h1>顧客情報更新</h1>
@@ -75,13 +77,13 @@
 				</tr>
 				<tr>
 					<th>郵便番号</th>
-					<td><html:text name="bean" property="postal"></html:text></td>
+					<td><input value="${bean.postal}" type="text" name="zip01" size="10" maxlength="8" onKeyUp="AjaxZip3.zip2addr(this,'','pref01','addr01');"></td>
 				</tr>
 				<tr>
-					<th>住所1</th>
-					<td><html:text name="bean" property="street1"></html:text></td>
-					<th>住所2</th>
-					<td><html:text name="bean" property="street2"></html:text></td>
+					<th>都道府県</th>
+					<td><input value="${bean.street1 }" type="text" name="pref01" size="20">
+					<th>詳細住所</th>
+					<td><input value="${bean.street2 }" type="text" name="addr01" size="20"></td>
 				</tr>
 				<tr>
 					<th>電話番号</th>
@@ -110,9 +112,9 @@
 			<html:submit value="更新内容確認" />
 		</html:form>
 	</logic:iterate>
-	<%--  <html:form action="/userDtail" method="GET">
-		<html:hidden property="userId" value="${form.userId }" />
+	<html:form action="/userdetail" method="GET">
+		<html:hidden property="userId" value="${bean.userId }" />
 		<html:submit value="戻る"/>
-	</html:form> --%>
+	</html:form>
 </body>
 </html>
