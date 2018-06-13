@@ -5,14 +5,13 @@
 package login;
 
 import javax.servlet.http.HttpServletRequest;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
 
 import dao.AdminDao;
 
@@ -43,7 +42,7 @@ public class LoginAction extends Action {
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
-		ActionForward forward ;
+//	ActionForward forward ;
 		HttpSession session = request.getSession();
 
 		String userName = request.getParameter("userName");
@@ -58,8 +57,8 @@ public class LoginAction extends Action {
 			return mapping.findForward(FAILURE);
 			//forward.setRedirect(false);
 			// forward.setNextPath("Login.do");
-		} else if (check == -1) // dont have id -> login
-		{
+		} else if (check == -1) { // dont have id -> login
+		
 			request.setAttribute("fail", "-1");
 			return mapping.findForward(FAILURE);
 			//forward.setRedirect(false);
