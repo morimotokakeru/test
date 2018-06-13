@@ -69,7 +69,7 @@ public class AdminDao {
 	}
 
 	public int loginCheck(String id, String pw) {
-		DBConnector conn = new DBConnector();
+		Connection conn = null;
 		PreparedStatement st = null;
 		ResultSet rs = null;
 
@@ -79,8 +79,9 @@ public class AdminDao {
 		try {
 			StringBuffer query = new StringBuffer();
 			query.append("SELECT PASSWORD FROM ADMIN WHERE EMAIL=?");
-
-			st = conn.connect().prepareStatement(query.toString());
+			
+			conn = DBConnect.getConnection();
+			st = conn.prepareStatement(query.toString());
 			st.setString(1, id);
 			rs = st.executeQuery();
 
@@ -99,7 +100,14 @@ public class AdminDao {
 			throw new RuntimeException(sqle.getMessage());
 		} finally {
 			try {
-				conn.close(st, rs);
+				if (st != null) {
+					st.close();
+					st = null;
+				}
+				if (conn != null) {
+					conn.close();
+					conn = null;
+				}
 			} catch (Exception e) {
 				throw new RuntimeException(e.getMessage());
 			}
