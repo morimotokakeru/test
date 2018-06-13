@@ -14,29 +14,31 @@
 </head>
 <body>
 
-		
-		
-			<table border="10" summary="hahahaha">
-				<caption>顧客一覧</caption>
-<html:form action="/users/update" method="GET">
-				<logic:iterate id="bean" name="bean">
+
+
+	<table border="10" summary="hahahaha">
+		<caption>顧客詳細</caption>
+
+			<logic:iterate id="bean" name="bean">
+			<html:form action="/users/update" method="GET">
 				<thead>
 					<tr>
 						<th>会社名</th>
 						<td><bean:write name="bean" property="company" /></td>
 						<th>氏名</th>
 						<td><bean:write name="bean" property="firstName" />
-						    <bean:write	name="bean" property="lastName" />
-						    <bean:write name="bean"	property="title" /></td>
+						    <bean:write name="bean" property="lastName" />
+						    <bean:write name="bean"
+								property="title" /></td>
 					</tr>
 					<tr>
 						<th>役職名</th>
 						<td><bean:write name="bean" property="positionName" /></td>
 						<th>フリガナ</th>
-						<td><bean:write name="bean" property="firstNameKana" />
-							<bean:write	name="bean" property="lastNameKana" /></td>
+						<td><bean:write name="bean" property="firstNameKana" /> <bean:write
+								name="bean" property="lastNameKana" /></td>
 					</tr>
-					<tr>	
+					<tr>
 						<th>部署名</th>
 						<td><bean:write name="bean" property="department1" /></td>
 						<th>郵便番号</th>
@@ -46,8 +48,8 @@
 						<th>部署名</th>
 						<td><bean:write name="bean" property="department2" /></td>
 						<th>住所</th>
-						<td><bean:write name="bean" property="street1" />
-							<bean:write name="bean" property="street2" /></td>
+						<td><bean:write name="bean" property="street1" /> <bean:write
+								name="bean" property="street2" /></td>
 					</tr>
 					<tr>
 						<th>分類1</th>
@@ -61,46 +63,34 @@
 						<td><bean:write name="bean" property="fax" /></td>
 					</tr>
 					<tr>
-						
+
 						<th>MOBILE</th>
 						<td><bean:write name="bean" property="mobile" /></td>
 						<th>E-mail</th>
 						<td><bean:write name="bean" property="email" /></td>
 					</tr>
 					<tr>
-						
+
 						<th>性別</th>
 						<td><bean:write name="bean" property="sex" /></td>
 						<th>☆彡</th>
-						<td><html:form action="/users/update" method="GET">
-						<html:submit value="更新する" />
-						</html:form></td>
-						
+						<td><%-- <html:form action="/users/update" method="GET"> --%>
+							<html:hidden name ="bean" property="userId" />
+							<html:submit value="更新する" /></td>
 					</tr>
-				</thead>
-				<tbody>
+					</thead>
+				</html:form>
 
+				
+			</logic:iterate>
 
-					<tr>
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-					</tr>
+		
 
-				</tbody>
-								</logic:iterate>
-		</html:form>
-			</table>
+	</table>	
+			 <html:form action="/users" method="GET"> 
 
-
+			<html:submit value="戻る" />
+	</html:form>
 
 </body>
 </html>

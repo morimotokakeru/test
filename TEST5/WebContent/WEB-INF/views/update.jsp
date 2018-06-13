@@ -11,6 +11,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>顧客情報更新</title>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/CSS/users.css"type="text/css"/>
+<script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
 </head>
 <body>
 	<h1>顧客情報更新</h1>
@@ -76,12 +78,15 @@
 				<tr>
 					<th>郵便番号</th>
 					<td><html:text name="bean" property="postal"></html:text></td>
+					<td><input type="text" name="zip01" size="10" maxlength="8" onKeyUp="AjaxZip3.zip2addr(this,'','pref01','addr01');"></td>
 				</tr>
 				<tr>
 					<th>住所1</th>
 					<td><html:text name="bean" property="street1"></html:text></td>
+					<td><input type="text" name="pref01" size="20"></td>
 					<th>住所2</th>
 					<td><html:text name="bean" property="street2"></html:text></td>
+					<td><input type="text" name="addr01" size="60"></td>
 				</tr>
 				<tr>
 					<th>電話番号</th>
