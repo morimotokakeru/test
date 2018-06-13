@@ -14,6 +14,7 @@
 
 		<form-bean name="userdetail" type="users.UserDetailForm"/>
 		<form-bean name="update" type="users.UpdateForm" />
+		<form-bean name="delete" type="users.DeleteForm" />
 	</form-beans>
 
 	<!-- ActionとActionFormとURLのマッピング設定を行います -->
@@ -47,9 +48,14 @@
 			<forward name="check" path="/WEB-INF/views/updateC.jsp" />
 			<forward name="view" path="/users.do" redirect="true" />
 
-
+ 
 		</action>
-	</action-mappings>
+		<action path="/users/delete" name="delete" scope="request" type="users.DeleteAction">
+			<forward name="ok" path="/WEB-INF/views/delete.jsp" />
+			<forward name="delete" path="/users.do" redirect="true" />
+		</action>
+			
+ 	</action-mappings>
 
 	<!--メッセージリソースファイルを設定 -->
 	<message-resources parameter="resource" />
