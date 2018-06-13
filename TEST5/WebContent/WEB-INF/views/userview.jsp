@@ -15,7 +15,7 @@
 <body>
 	<h1>ようこそ <bean:write name="LoginActionForm" property="userName"></bean:write></h1>
 	<h1>★顧客検索一覧画面</h1>
-	<%-- 
+	<%--
 	<h3>
 		Welcome to
 		<bean:write scope="session" name="user" property="firstName" />
@@ -83,9 +83,9 @@
 			新しい順
 			<html:radio property="razio" value="2" />
 		</p>
-		
 
-		
+
+
 	</html:form>
 
 
@@ -117,7 +117,7 @@
 							 <td><bean:write name="bean" property="company" /></td>
 							<td><bean:write name="bean" property="positionName" /></td>
 							<td><bean:write name="bean" property="firstName" />
-							 	<bean:write name="bean" property="lastName" /> 
+							 	<bean:write name="bean" property="lastName" />
 								<bean:write name="bean" property="title" /></td>
 							<td><bean:write name="bean" property="sex" /></td>
 							<html:hidden name="bean" property="userId" />
@@ -128,8 +128,9 @@
 
 			</tbody>
 		</table>
-	
-
+	<html:form action="/users/new.do" method="GET">
+		<html:submit value="新規登録"></html:submit>
+	</html:form>
 
 
 </body>
