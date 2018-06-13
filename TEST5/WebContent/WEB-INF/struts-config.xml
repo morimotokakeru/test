@@ -14,6 +14,7 @@
 
 		<form-bean name="userdetail" type="users.UserDetailForm"/>
 		<form-bean name="update" type="users.UpdateForm" />
+		<form-bean name="new" type="users.NewForm" />
 	</form-beans>
 
 	<!-- ActionとActionFormとURLのマッピング設定を行います -->
@@ -46,8 +47,9 @@
 			<forward name="ok" path="/WEB-INF/views/update.jsp" />
 			<forward name="check" path="/WEB-INF/views/updateC.jsp" />
 			<forward name="view" path="/users.do" redirect="true" />
-
-
+		</action>
+		<action path="/users/new" name="new" scope="request" type="users.NewAction">
+			<forward name="ok" path="/WEB-INF/views/new.jsp" />
 		</action>
 	</action-mappings>
 
