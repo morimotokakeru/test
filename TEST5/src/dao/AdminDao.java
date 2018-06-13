@@ -29,7 +29,7 @@ public class AdminDao {
 		try {
 			StringBuffer query = new StringBuffer();
 			query.append("SELECT PASSWORD FROM ADMIN WHERE EMAIL=?");
-
+			
 			st = conn.connect().prepareStatement(query.toString());
 			st.setString(1, id);
 			rs = st.executeQuery();
