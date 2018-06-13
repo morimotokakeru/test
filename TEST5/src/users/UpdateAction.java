@@ -34,7 +34,6 @@ public class UpdateAction extends Action {
 		request.setAttribute("beans", dao.getOneRecode(form.getUserId()));
 		request.setAttribute("pullDownList", dao.doPullDown());
 		return mapping.findForward("ok");
-
 	}
 
 	public ActionForward doPost(ActionMapping mapping, ActionForm _form, HttpServletRequest request,
