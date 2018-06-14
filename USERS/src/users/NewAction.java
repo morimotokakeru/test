@@ -43,7 +43,7 @@ public class NewAction extends Action {
 			request.setAttribute("form",form );
 			return mapping.findForward("check");
 		}
-//			dao.doUpdate(form);
+			dao.doInsert(form);
 			return mapping.findForward("view");
 
 	}
