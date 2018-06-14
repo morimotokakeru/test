@@ -76,7 +76,7 @@ public class AdminDao {
 		try {
 			StringBuffer query = new StringBuffer();
 			query.append("SELECT PASSWORD FROM ADMIN WHERE EMAIL=?");
-			
+
 			conn = DBConnect.getConnection();
 			st = conn.prepareStatement(query.toString());
 			st.setString(1, id);
@@ -114,28 +114,27 @@ public class AdminDao {
 	public void doUpdate(String id, UpdateActionForm form) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		
 
 		try {
 			StringBuffer query = new StringBuffer();
 			query.append("UPDATE ADMIN SET");
 			query.append(" PASSWORD=?, FIRST_NAME=?, LAST_NAME=?");
 			query.append(" WHERE EMAIL=?");
-			
+
 			conn = DBConnect.getConnection();
 			pstmt = conn.prepareStatement(query.toString());
-			
+
 			conn.setAutoCommit(false);
-			
+
 			pstmt.setString(1, form.getPassword());
 			pstmt.setString(2, form.getFirstname());
 			pstmt.setString(3, form.getLastname());
 			pstmt.setString(4, id);
-			
+
 			pstmt.executeUpdate();
-			
+
 			conn.commit();
-			
+
 		} catch (
 
 		Exception sqle) {
@@ -155,7 +154,62 @@ public class AdminDao {
 			}
 		}
 	}
+
+	public int deleteUser(String id, String password) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String dbpw = "";
+		int x = -1;
+		try {
+			StringBuffer query1 = new StringBuffer();
+			query1.append("SELECT PASSWORD FROM ADMIN WHERE EMAIL=?");
+
+			StringBuffer query2 = new StringBuffer();
+			query2.append("DELETE FROM ADMIN WHERE EMAIL=?");
+
+			conn = DBConnect.getConnection();
+
+			conn.setAutoCommit(false);
+
+			pstmt = conn.prepareStatement(query1.toString());
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				dbpw = rs.getString("password");
+				if (dbpw.equals(password)) 
+				{
+					pstmt = conn.prepareStatement(query2.toString());
+					pstmt.setString(1, id);
+					pstmt.executeUpdate();
+					conn.commit();
+					x = 1;
+				} else {
+					x = 0;
+				}
+			}
+			return x;
+		} catch (Exception sqle) {
+			throw new RuntimeException(sqle.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+					pstmt = null;
+				}
+				if (conn != null) {
+					conn.close();
+					conn = null;
+				}
+			} catch (Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+	}
 }
+
 /*
  * public List<AdminBean> getAdmin(LoginActionForm form) { DBConnector db = new
  * DBConnector(); List<AdminBean> adminInfo = null; PreparedStatement st = null;

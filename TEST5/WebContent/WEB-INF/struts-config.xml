@@ -17,7 +17,8 @@
 			type="join.JoinActionForm" />
 		<form-bean name="UpdateActionForm"
 			type="join.UpdateActionForm" />			
-			
+		<form-bean name="UserInfoActionForm" type="join.UserInfoActionForm"/>
+		<form-bean name="DeleteActionForm" type="join.DeleteActionForm"/>	
 
 		<form-bean name="userdetail" type="users.UserDetailForm"/>
 		<form-bean name="update" type="users.UpdateForm" />
@@ -40,8 +41,19 @@
 			<forward name="failure" path="/WEB-INF/views/failure.jsp" />
 			<forward name="success" path="/login.do" redirect="true" />
 		</action>
-		<action path="/info" forward="/WEB-INF/views/UserInfoForm.jsp"/>
-		<action path="/info/move" forward="/WEB-INF/views/UpdateForm.jsp"/>
+		<action path="/info" type="join.UserInfoAction" scope="session" >
+			<forward name="success" path="/WEB-INF/views/UserInfoForm.jsp"/>
+		</action>
+		<action path="/info/modify" type="join.UserInfoAction" scope="session">
+		<forward name="success" path="/WEB-INF/views/UpdateForm.jsp"/>
+		</action>
+		
+		<!-- delete -->
+		<action path="/join/confirm" forward="/WEB-INF/views/UserDelete.jsp"  />
+		<action path="/info/delete" name="DeleteActionForm" type="join.DeleteAction" scope="session">
+		<forward name="success" path="index.jsp"/>
+		</action>
+		
 		<action path="/info/update" name="UpdateActionForm" type="join.UpdateAction" input="/WEB-INF/views/UpdateForm.jsp" scope="session">
 			<forward name = "success" path="/users.do" redirect="true"/>
 		</action>
