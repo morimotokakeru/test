@@ -54,8 +54,8 @@
 
 		</action>
 
-		<!-- <action path="/login" input="/login.jsp" name="LoginForm" scope="session" 
-			type="login.LoginAction"> <forward name="success" path="/WEB-INF/views/success.jsp" 
+		<!-- <action path="/login" input="/login.jsp" name="LoginForm" scope="session"
+			type="login.LoginAction"> <forward name="success" path="/WEB-INF/views/success.jsp"
 			/> <forward name="failure" path="/WEB-INF/views/failure.jsp" /> </action> -->
 		<action path="/users" name="userView" scope="request"
 			type="users.UserViewAction">
@@ -69,7 +69,7 @@
 			type="users.UpdateAction">
 			<forward name="ok" path="/WEB-INF/views/update.jsp" />
 			<forward name="check" path="/WEB-INF/views/updateC.jsp" />
-			<forward name="view" path="/users.do" redirect="true" /> 
+			<forward name="view" path="/users.do" redirect="true" />
 		</action>
 		<action path="/users/delete" name="delete" scope="request" type="users.DeleteAction">
 			<forward name="ok" path="/WEB-INF/views/delete.jsp" />
@@ -77,8 +77,10 @@
 		</action>
 		<action path="/users/new" name="new" scope="request" type="users.NewAction">
 			<forward name="ok" path="/WEB-INF/views/new.jsp" />
+			<forward name="check" path="/WEB-INF/views/newC.jsp" />
+			<forward name="view" path="/users.do" redirect="true" />
 		</action>
-			
+
  	</action-mappings>
 
 	<!--メッセージリソースファイルを設定 -->

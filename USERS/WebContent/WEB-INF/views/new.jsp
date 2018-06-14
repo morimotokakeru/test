@@ -16,7 +16,7 @@
 </head>
 <body>
 	<h1>新規顧客登録</h1>
-		<html:form action="/users/new" method="GET">
+		<html:form action="/users/new" method="POST">
 			<table>
 				<tr>
 					<th>苗字</th>
@@ -110,8 +110,8 @@
 					</td>
 				</tr>
 			</table>
-			<%-- <html:hidden property="select" value="1" />
-			<html:submit value="登録内容確認" /> --%>
+			<html:hidden property="select" />
+			<html:submit value="登録内容確認" />
 		</html:form>
 	<html:form action="/users" method="GET">
 		<html:submit value="戻る"/>

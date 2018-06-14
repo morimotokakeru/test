@@ -9,6 +9,7 @@ import java.util.List;
 import DBconnector.DBConnector;
 import beans.UserBean;
 import users.DeleteForm;
+import users.NewForm;
 import users.UpdateForm;
 import users.UserViewForm;
 
@@ -71,7 +72,6 @@ public class UserDao {
 				Sql.append(" and EMAIL like ?");
 			}
 			Sql.append(" ORDER BY  USER_ID ASC");
-			
 
 			// ドライバロード.DB接続.SQLをセット
 			st = db.connect().prepareStatement(Sql.toString());
@@ -200,7 +200,7 @@ public class UserDao {
 		}
 
 	}
-  
+
 	//Oneレコード分データ
 	public List<UserBean> getOneRecode(int userId) {
 		DBConnector db = new DBConnector();
@@ -273,17 +273,80 @@ public class UserDao {
 		return pullDowns;
 
 	}
+
 	//顧客データ削除用
-		public void doDelete(DeleteForm form) throws SQLException {
-			DBConnector db = new DBConnector();
-			PreparedStatement st = null;
-			st = db.connect().prepareStatement("DELETE FROM CUSTOMER WHERE USER_ID = ?");
-			try {
-				st.setInt(1, form.getUserId());
-			} catch (SQLException e) {
-				// TODO 自動生成された catch ブロック
-				e.printStackTrace();
-			}
-			st.executeUpdate();
+	public void doDelete(DeleteForm form) throws SQLException {
+		DBConnector db = new DBConnector();
+		PreparedStatement st = null;
+		st = db.connect().prepareStatement("DELETE FROM CUSTOMER WHERE USER_ID = ?");
+		try {
+			st.setInt(1, form.getUserId());
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
 		}
+		st.executeUpdate();
+	}
+
+	//新規顧客登録
+	public void doInsert(NewForm form) {
+		DBConnector db = new DBConnector();
+		PreparedStatement st = null;
+//		int i = doUserIdMax();
+		try {
+			int index = 0;
+			st = db.connect().prepareStatement("INSERT INTO CUSTOMER VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, SYSDATE,SYSDATE,TO_DATE(?),?,?)");
+			st.setInt(++index, doUserIdMax());
+			st.setString(++index, form.getFirstName());
+			st.setString(++index, form.getLastName());
+			st.setString(++index, form.getFirstNameKana());
+			st.setString(++index, form.getLastNameKana());
+			st.setString(++index, form.getTitle());
+			st.setString(++index, form.getSex());
+			st.setString(++index, form.getClassification1());
+			st.setString(++index, form.getClassification2());
+			st.setString(++index, form.getPositionName());
+			st.setString(++index, form.getCompany());
+			st.setString(++index, form.getDepartment1());
+			st.setString(++index, form.getDepartment2());
+			st.setString(++index, form.getPostal());
+			st.setString(++index, form.getStreet1());
+			st.setString(++index, form.getTell());
+			st.setString(++index, form.getFax());
+			st.setString(++index, form.getMobile());
+			st.setString(++index, form.getEmail());
+			st.setDate(++index, form.getChangeDate());
+			st.setString(++index, form.getStreet2());
+			st.setString(++index, form.getComment1());
+			System.out.println(st);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		} finally {
+			db.close(st);
+		}
+	}
+
+	//USER_IDの最大値
+	public int doUserIdMax() {
+		DBConnector db = new DBConnector();
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		int maxId = 0;
+		try {
+			st = db.connect().prepareStatement("SELECT MAX(USER_ID) FROM CUSTOMER");
+			rs = st.executeQuery();
+			while (rs.next()) {// 次のレコードに下がれればの条件式//
+				maxId = rs.getInt("MAX(USER_ID)");
+			}
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		} finally {
+			db.close(st);
+		}
+		return ++maxId;
+
+	}
 }
