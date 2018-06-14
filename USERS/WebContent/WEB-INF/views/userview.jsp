@@ -11,11 +11,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>検索画面</title>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/CSS/users.css"type="text/css"/>
 </head>
 <body>
 <%-- 	<h1>ようこそ <bean:write name="LoginActionForm" property="userName"></bean:write></h1>
  --%>	<h1>★顧客検索一覧画面</h1>
 	<%--
+	
 	<h3>
 		Welcome to
 		<bean:write scope="session" name="user" property="firstName" />
