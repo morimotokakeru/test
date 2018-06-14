@@ -4,10 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import org.apache.struts.action.ActionForm;
-
 import DBconnector.DBConnect;
-import DBconnector.DBConnector;
 import beans.AdminBean;
 import join.UpdateActionForm;
 
@@ -123,7 +120,7 @@ public class AdminDao {
 			StringBuffer query = new StringBuffer();
 			query.append("UPDATE ADMIN SET");
 			query.append(" PASSWORD=?, FIRST_NAME=?, LAST_NAME=?");
-			query.append(" WHERE ID=?");
+			query.append(" WHERE EMAIL=?");
 			
 			conn = DBConnect.getConnection();
 			pstmt = conn.prepareStatement(query.toString());

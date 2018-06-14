@@ -15,6 +15,8 @@
 		<!-- Join -->
 		<form-bean name="JoinActionForm"
 			type="join.JoinActionForm" />
+		<form-bean name="UpdateActionForm"
+			type="join.UpdateActionForm" />			
 			
 
 		<form-bean name="userdetail" type="users.UserDetailForm"/>
@@ -40,8 +42,8 @@
 		</action>
 		<action path="/info" forward="/WEB-INF/views/UserInfoForm.jsp"/>
 		<action path="/info/move" forward="/WEB-INF/views/UpdateForm.jsp"/>
-		<action path="/info/update" name="" type="" input="" scope="session">
-		
+		<action path="/info/update" name="UpdateActionForm" type="join.UpdateAction" input="/WEB-INF/views/UpdateForm.jsp" scope="session">
+			<forward name = "success" path="/users.do" redirect="true"/>
 		</action>
 
 
