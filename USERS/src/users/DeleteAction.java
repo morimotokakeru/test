@@ -37,6 +37,7 @@ import dao.UserDao;
 			request.setAttribute("bean", dao.getOneRecode(form.getUserId()));
 			return mapping.findForward("ok");
 		}
+		
 		private ActionForward doPost(ActionMapping mapping, ActionForm _form, HttpServletResponse response,
 				HttpServletRequest request) throws SQLException {
 			UserDao dao = new UserDao();
