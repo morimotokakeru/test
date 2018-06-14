@@ -191,7 +191,6 @@ public class UserDao {
 			st.setDate(++index, form.getChangeDate());
 			st.setString(++index, form.getComment1());
 			st.setInt(++index, form.getUserId());
-			System.out.println(st);
 			st.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -318,7 +317,6 @@ public class UserDao {
 			st.setDate(++index, form.getChangeDate());
 			st.setString(++index, form.getStreet2());
 			st.setString(++index, form.getComment1());
-			System.out.println(st);
 			st.executeUpdate();
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
