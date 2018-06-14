@@ -106,11 +106,11 @@
 				</tr>
 				<tr>
 					<th>コメント欄</th>
-					<td><html:textarea property="comment1">${bean.comment1}</html:textarea>
+					<td><html:textarea property="comment1"></html:textarea>
 					</td>
 				</tr>
 			</table>
-			<html:hidden property="select" />
+			<html:hidden property="select" value="1"/>
 			<html:submit value="登録内容確認" />
 		</html:form>
 	<html:form action="/users" method="GET">
