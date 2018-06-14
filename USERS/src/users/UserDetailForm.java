@@ -3,6 +3,7 @@ package users;
 import org.apache.struts.action.ActionForm;
 
 public class UserDetailForm extends ActionForm {
+	
 	private int userId;
 	private String firstName;
 	private String lastName;
