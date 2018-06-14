@@ -39,6 +39,14 @@ public class UserViewForm extends ActionForm{
 	private String street2;
 	private String comment1;
 
+//	ラジオボタンからの値を受け取ろう
+	private int razio;
+	public int getRazio() {
+		return razio;
+	}
+	public void setRazio(int razio) {
+		this.razio = razio;
+	}
 	public int getUserId() {
 		return userId;
 	}

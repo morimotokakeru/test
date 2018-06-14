@@ -71,7 +71,12 @@ public class UserDao {
 			if (form.getEmail() != null && !form.getEmail().isEmpty()) {
 				Sql.append(" and EMAIL like ?");
 			}
-			Sql.append(" ORDER BY  USER_ID ASC");
+			if (form.getRazio() == 1) {
+				Sql.append(" order by UPDATE_DATE asc");
+			} else {
+				Sql.append(" order by UPDATE_DATE desc");
+			}
+
 
 			// ドライバロード.DB接続.SQLをセット
 			st = db.connect().prepareStatement(Sql.toString());
