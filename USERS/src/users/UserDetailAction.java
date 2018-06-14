@@ -21,5 +21,7 @@ public class UserDetailAction extends Action {
 				UserDao dao = new UserDao();
 				request.setAttribute("bean", dao.getOneRecode(form.getUserId()));
 				return mapping.findForward("ok");
+				
+				
 	}
 }
