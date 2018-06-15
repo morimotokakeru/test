@@ -2,9 +2,9 @@ package users;
 
 import java.sql.Date;
 
-import org.apache.struts.action.ActionForm;
+import org.apache.struts.validator.ValidatorForm;
 
-public class NewForm extends ActionForm {
+public class NewForm extends ValidatorForm {
 
 	private int userId;
 	private String firstName;

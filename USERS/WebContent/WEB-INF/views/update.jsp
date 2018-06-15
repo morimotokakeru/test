@@ -22,6 +22,7 @@
 				<tr>
 					<th>苗字</th>
 					<td><html:text name="bean" property="firstName"></html:text></td>
+					<td><html:errors property="firstName"></html:errors></td>
 					<th>(フリガナ)</th>
 					<td><html:text name="bean" property="firstNameKana"></html:text></td>
 				</tr>

@@ -66,7 +66,7 @@
 			<forward name="ok" path="/WEB-INF/views/userdetail.jsp"></forward>
 		</action>
 		<action path="/users/update" name="update" scope="request"
-			type="users.UpdateAction">
+				validate="false" type="users.UpdateAction">
 			<forward name="ok" path="/WEB-INF/views/update.jsp" />
 			<forward name="check" path="/WEB-INF/views/updateC.jsp" />
 			<forward name="view" path="/users.do" redirect="true" />
@@ -87,7 +87,7 @@
 	<message-resources parameter="resource" />
 
 	<!-- Validatorプラグインの設定 -->
-	<!-- <plug-in className="org.apache.struts.validator.ValidatorPlugIn"> <set-property
+	 <plug-in className="org.apache.struts.validator.ValidatorPlugIn"> <set-property
 		property="pathnames" value="/org/apache/struts/validator/validator-rules.xml,
-		/WEB-INF/validation.xml" /> </plug-in> -->
+		/WEB-INF/validation.xml" /> </plug-in>
 </struts-config>

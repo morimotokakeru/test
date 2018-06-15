@@ -19,32 +19,65 @@
 			</field>
 		</form>
 
-		<form name="insert">
+		<form name="new">
+			<field property="firstName" depends="required">
+				<msg name="required" key="errors.required" />
+				<arg position="0" key="firstName" />
+			</field>
+			<field property="lastName" depends="required">
+				<msg name="required" key="errors.required" />
+				<arg position="0" key="lastName" />
+			</field>
 			<field property="title" depends="required">
 				<msg name="required" key="errors.required" />
 				<arg position="0" key="title" />
 			</field>
-			<field property="nickname" depends="required">
+			<field property="sex" depends="required">
 				<msg name="required" key="errors.required" />
-				<arg position="0" key="nickname" />
+				<arg position="0" key="sex" />
 			</field>
-			<field property="message" depends="required">
+			<field property="company" depends="required">
 				<msg name="required" key="errors.required" />
-				<arg position="0" key="message" />
+				<arg position="0" key="company" />
+			</field>
+			<field property="tell" depends="required">
+				<msg name="required" key="errors.required" />
+				<arg position="0" key="tell" />
+			</field>
+			<field property="changeDate" depends="required">
+				<msg name="required" key="errors.required" />
+				<arg position="0" key="changeDate" />
 			</field>
 		</form>
+		
 		<form name="update">
+			<field property="firstName" depends="required">
+				<msg name="required" key="errors.required" />
+				<arg position="0" key="firstName" />
+			</field>
+			<field property="lastName" depends="required">
+				<msg name="required" key="errors.required" />
+				<arg position="0" key="lastName" />
+			</field>
 			<field property="title" depends="required">
 				<msg name="required" key="errors.required" />
 				<arg position="0" key="title" />
 			</field>
-			<field property="nickname" depends="required">
+			<field property="sex" depends="required">
 				<msg name="required" key="errors.required" />
-				<arg position="0" key="nickname" />
+				<arg position="0" key="sex" />
 			</field>
-			<field property="message" depends="required">
+			<field property="company" depends="required">
 				<msg name="required" key="errors.required" />
-				<arg position="0" key="message" />
+				<arg position="0" key="company" />
+			</field>
+			<field property="tell" depends="required">
+				<msg name="required" key="errors.required" />
+				<arg position="0" key="tell" />
+			</field>
+			<field property="changeDate" depends="required">
+				<msg name="required" key="errors.required" />
+				<arg position="0" key="changeDate" />
 			</field>
 		</form>
 	</formset>

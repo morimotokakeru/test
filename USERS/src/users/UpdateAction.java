@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -40,6 +41,14 @@ public class UpdateAction extends Action {
 		HttpServletResponse response) {
 		UserDao dao = new UserDao();// 実際処理する為のクラス//
 		UpdateForm form = (UpdateForm)_form;
+		
+		//validation
+		ActionErrors errors = _form.validate(mapping, request);
+		if (errors != null && !errors.isEmpty()) {
+			saveErrors(request, errors);
+			return mapping.getInputForward();
+		}
+		
 		if(form.getSelect() == 1) {
 			request.setAttribute("form",form );
 			return mapping.findForward("check");
