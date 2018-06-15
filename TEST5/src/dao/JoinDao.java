@@ -5,13 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.management.RuntimeErrorException;
-import javax.naming.NamingException;
-
-import com.sun.javafx.geom.transform.GeneralTransform3D;
-
 import DBconnector.DBConnect;
-import DBconnector.DBConnector;
 import join.JoinActionForm;
 
 public class JoinDao {

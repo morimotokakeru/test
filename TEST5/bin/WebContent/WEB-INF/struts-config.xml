@@ -49,9 +49,9 @@
 		</action>
 		
 		<!-- delete -->
-		<action path="/info/confirm" forward="/WEB-INF/views/UserDelete.jsp"  />
-		<action path="/info/delete" name="DeleteActionForm" type="join.DeleteAction" input="/WEB-INF/views/UserDelete.jsp" scope="session">
-			<forward name="success" path="/index.jsp"/>
+		<action path="/join/confirm" forward="/WEB-INF/views/UserDelete.jsp"  />
+		<action path="/info/delete" name="DeleteActionForm" type="join.DeleteAction" scope="session">
+		<forward name="success" path="index.jsp"/>
 		</action>
 		
 		<action path="/info/update" name="UpdateActionForm" type="join.UpdateAction" input="/WEB-INF/views/UpdateForm.jsp" scope="session">

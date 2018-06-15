@@ -74,26 +74,4 @@ public class LoginAction extends Action {
 	     //	return forward;
 	}
 
-	/*
-	 * AdminDao dao = AdminDao.get;
-	 * 
-	 * LoginActionForm loginForm = (LoginActionForm) form;
-	 * 
-	 * request.setAttribute("adminbeans", dao.getAdmin(loginForm));
-	 */
-
-	/*
-	 * if (loginForm.getUserName().equals(loginForm.getPassword())) { return
-	 * mapping.findForward(SUCCESS); } else { return mapping.findForward(FAILURE); }
-	 */
-
-	/*
-	 * String userName = request.getParameter("userName");
-	 * System.out.println("LoginAciton userName: " + userName); String password =
-	 * request.getParameter("password"); System.out.println("LoginAciton password: "
-	 * + password);
-	 * 
-	 * if (loginForm.getUserName().equals(loginForm.getPassword())) { return
-	 * mapping.findForward(SUCCESS); } else { return mapping.findForward(FAILURE); }
-	 */
 }
