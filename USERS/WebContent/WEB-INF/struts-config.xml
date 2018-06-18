@@ -23,6 +23,7 @@
 		<form-bean name="update" type="users.UpdateForm" />
 		<form-bean name="delete" type="users.DeleteForm" />
 		<form-bean name="new" type="users.NewForm" />
+		<form-bean name="option" type="users.OptionForm" />
 	</form-beans>
 
 	<global-forwards>
@@ -78,6 +79,11 @@
 		<action path="/users/new" name="new" scope="request" type="users.NewAction">
 			<forward name="ok" path="/WEB-INF/views/new.jsp" />
 			<forward name="check" path="/WEB-INF/views/newC.jsp" />
+			<forward name="view" path="/users.do" redirect="true" />
+		</action>
+
+		<action path="/option" name="option" scope="request" type="users.OptionAction">
+			<forward name="ok" path="/WEB-INF/views/option.jsp" />
 			<forward name="view" path="/users.do" redirect="true" />
 		</action>
 
