@@ -13,7 +13,7 @@ import org.apache.struts.action.ActionMapping;
 
 import dao.UserDao;
 
-public class UpdateAction extends Action {
+public class NewAction extends Action {
 	ActionForward forward;
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm _form, HttpServletRequest request,
@@ -29,10 +29,11 @@ public class UpdateAction extends Action {
 
 	public ActionForward doGet(ActionMapping mapping, ActionForm _form, HttpServletRequest request,
 		HttpServletResponse response) {
-		UpdateForm form = (UpdateForm)_form;
 		UserDao dao = new UserDao();// 実際処理する為のクラス//
-		request.setAttribute("beans", dao.getOneRecode(form.getUserId()));
-		request.setAttribute("pullDownList", dao.doPullDown());
+		request.setAttribute("pullDownListT", dao.doPullDownTitle());
+		request.setAttribute("pullDownListS", dao.doPullDownSex());
+		request.setAttribute("pullDownListC1", dao.doPullDownClassification1());
+		request.setAttribute("pullDownListC2", dao.doPullDownClassification2());
 		return mapping.findForward("ok");
 
 	}
@@ -40,12 +41,13 @@ public class UpdateAction extends Action {
 	public ActionForward doPost(ActionMapping mapping, ActionForm _form, HttpServletRequest request,
 		HttpServletResponse response) {
 		UserDao dao = new UserDao();// 実際処理する為のクラス//
-		UpdateForm form = (UpdateForm)_form;
+		NewForm form = (NewForm)_form;
 		if(form.getSelect() == 1) {
 			request.setAttribute("form",form );
 			return mapping.findForward("check");
 		}
-			dao.doUpdate(form);
+			dao.doInsert(form);
 			return mapping.findForward("view");
+
 	}
 }

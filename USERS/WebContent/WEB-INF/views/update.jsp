@@ -34,7 +34,7 @@
 				<tr>
 					<th>敬称</th>
 					<td><html:select name="bean" property="title">
-							<logic:iterate id="list" name="pullDownList">
+							<logic:iterate id="list" name="pullDownListT">
 								<html:option value="${list.title }" />
 							</logic:iterate>
 						</html:select></td>
@@ -42,7 +42,7 @@
 				<tr>
 					<th>性別</th>
 					<td><html:select name="bean" property="sex">
-							<logic:iterate id="list" name="pullDownList">
+							<logic:iterate id="list" name="pullDownListS">
 								<html:option value="${list.sex }" />
 							</logic:iterate>
 						</html:select></td>
@@ -50,13 +50,13 @@
 				<tr>
 					<th>分類1</th>
 					<td><html:select name="bean" property="classification1">
-							<logic:iterate id="list" name="pullDownList">
+							<logic:iterate id="list" name="pullDownListC1">
 								<html:option value="${list.classification1 }" />
 							</logic:iterate>
 						</html:select></td>
 					<th>分類2</th>
 					<td><html:select name="bean" property="classification2">
-							<logic:iterate id="list" name="pullDownList">
+							<logic:iterate id="list" name="pullDownListC2">
 								<html:option value="${list.classification2 }" />
 							</logic:iterate>
 						</html:select></td>
@@ -77,16 +77,13 @@
 				</tr>
 				<tr>
 					<th>郵便番号</th>
-					<td><html:text name="bean" property="postal"></html:text></td>
-					<td><input type="text" name="zip01" size="10" maxlength="8" onKeyUp="AjaxZip3.zip2addr(this,'','pref01','addr01');"></td>
+					<td><input value="${bean.postal}" type="text" name="zip01" size="10" maxlength="8" onKeyUp="AjaxZip3.zip2addr(this,'','pref01','addr01');"></td>
 				</tr>
 				<tr>
-					<th>住所1</th>
-					<td><html:text name="bean" property="street1"></html:text></td>
-					<td><input type="text" name="pref01" size="20"></td>
-					<th>住所2</th>
-					<td><html:text name="bean" property="street2"></html:text></td>
-					<td><input type="text" name="addr01" size="60"></td>
+					<th>都道府県</th>
+					<td><input value="${bean.street1 }" type="text" name="pref01" size="20">
+					<th>詳細住所</th>
+					<td><input value="${bean.street2 }" type="text" name="addr01" size="20"></td>
 				</tr>
 				<tr>
 					<th>電話番号</th>
@@ -115,9 +112,9 @@
 			<html:submit value="更新内容確認" />
 		</html:form>
 	</logic:iterate>
-	<%--  <html:form action="/userDtail" method="GET">
-		<html:hidden property="userId" value="${form.userId }" />
+	<html:form action="/userdetail" method="GET">
+		<html:hidden property="userId" value="${bean.userId }" />
 		<html:submit value="戻る"/>
-	</html:form> --%>
+	</html:form>
 </body>
 </html>

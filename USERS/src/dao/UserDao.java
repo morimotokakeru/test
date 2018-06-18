@@ -8,6 +8,8 @@ import java.util.List;
 
 import DBconnector.DBConnector;
 import beans.UserBean;
+import users.DeleteForm;
+import users.NewForm;
 import users.UpdateForm;
 import users.UserViewForm;
 
@@ -70,7 +72,6 @@ public class UserDao {
 				Sql.append(" and EMAIL like ?");
 			}
 			Sql.append(" ORDER BY  USER_ID ASC");
-			
 
 			// ドライバロード.DB接続.SQLをセット
 			st = db.connect().prepareStatement(Sql.toString());
@@ -190,7 +191,6 @@ public class UserDao {
 			st.setDate(++index, form.getChangeDate());
 			st.setString(++index, form.getComment1());
 			st.setInt(++index, form.getUserId());
-			System.out.println(st);
 			st.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -199,7 +199,7 @@ public class UserDao {
 		}
 
 	}
-  
+
 	//Oneレコード分データ
 	public List<UserBean> getOneRecode(int userId) {
 		DBConnector db = new DBConnector();
@@ -241,35 +241,237 @@ public class UserDao {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		} finally {
-			db.close(st);
+			db.close(st, rs);
 		}
 		return users;
 	}
 
-	//プールダウン用、分類１、分類2、性別、敬称リスト
-	public List<UserBean> doPullDown() {
+	//プールダウン用 敬称リスト
+	public List<UserBean> doPullDownTitle() {
 		DBConnector db = new DBConnector();
 		List<UserBean> pullDowns = null;
 		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
 		ResultSet rs = null;
 		try {
 			pullDowns = new ArrayList<UserBean>();
-			st = db.connect().prepareStatement("SELECT * FROM PULLDOWN");
+			st = db.connect().prepareStatement("SELECT TITLE_NAME FROM PULLDOWN_TITLE");
 			rs = st.executeQuery();
 			while (rs.next()) {
 				UserBean list = new UserBean();
 				list.setTitle(rs.getString("TITLE_NAME"));
-				list.setSex(rs.getString("SEX"));
+				pullDowns.add(list);
+			}
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		} finally {
+			db.close(st, rs);
+		}
+
+		return pullDowns;
+
+	}
+
+	//プールダウン用 性別リスト
+	public List<UserBean> doPullDownSex() {
+		DBConnector db = new DBConnector();
+		List<UserBean> pullDowns = null;
+		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
+		ResultSet rs = null;
+		try {
+			pullDowns = new ArrayList<UserBean>();
+			st = db.connect().prepareStatement("SELECT SEX_NAME FROM PULLDOWN_SEX");
+			rs = st.executeQuery();
+			while (rs.next()) {
+				UserBean list = new UserBean();
+				list.setSex(rs.getString("SEX_NAME"));
+				pullDowns.add(list);
+			}
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		} finally {
+			db.close(st, rs);
+		}
+
+		return pullDowns;
+
+	}
+
+	//プールダウン用 分類１リスト
+	public List<UserBean> doPullDownClassification1() {
+		DBConnector db = new DBConnector();
+		List<UserBean> pullDowns = null;
+		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
+		ResultSet rs = null;
+		try {
+			pullDowns = new ArrayList<UserBean>();
+			st = db.connect().prepareStatement("SELECT CLASSIFICATION1_NAME FROM PULLDOWN_CLASSIFICATION1");
+			rs = st.executeQuery();
+			while (rs.next()) {
+				UserBean list = new UserBean();
 				list.setClassification1(rs.getString("CLASSIFICATION1_NAME"));
+				pullDowns.add(list);
+			}
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		} finally {
+			db.close(st, rs);
+		}
+
+		return pullDowns;
+
+	}
+
+	//プールダウン用 分類2リスト
+	public List<UserBean> doPullDownClassification2() {
+		DBConnector db = new DBConnector();
+		List<UserBean> pullDowns = null;
+		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
+		ResultSet rs = null;
+		try {
+			pullDowns = new ArrayList<UserBean>();
+			st = db.connect().prepareStatement("SELECT CLASSIFICATION2_NAME FROM PULLDOWN_CLASSIFICATION2");
+			rs = st.executeQuery();
+			while (rs.next()) {
+				UserBean list = new UserBean();
 				list.setClassification2(rs.getString("CLASSIFICATION2_NAME"));
 				pullDowns.add(list);
 			}
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
-		} // 準備//
+		} finally {
+			db.close(st, rs);
+		}
 
 		return pullDowns;
+
+	}
+
+	//PullDown 敬称追加書き込み
+	public void titleInsert(String titleName) {
+		DBConnector db = new DBConnector();
+		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
+		try {
+			st = db.connect().prepareStatement("INSERT INTO PULLDOWN_TITLE VALUES(?)");
+			st.setString(1, titleName);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		} finally {
+			db.close(st);
+		}
+	}
+
+	//PullDown 分類1追加書き込み
+	public void classInsert1Insert(String classification1) {
+		DBConnector db = new DBConnector();
+		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
+		try {
+			st = db.connect().prepareStatement("INSERT INTO PULLDOWN_CLASSIFICATION1 VALUES(?)");
+			st.setString(1, classification1);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		} finally {
+			db.close(st);
+		}
+	}
+
+	//PullDown 分類2追加書き込み
+	public void classification2Insert(String classification2) {
+		DBConnector db = new DBConnector();
+		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
+		try {
+			st = db.connect().prepareStatement("INSERT INTO PULLDOWN_CLASSIFICATION2 VALUES(?)");
+			st.setString(1, classification2);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		} finally {
+			db.close(st);
+		}
+	}
+
+	//顧客データ削除用
+	public void doDelete(DeleteForm form) throws SQLException {
+		DBConnector db = new DBConnector();
+		PreparedStatement st = null;
+		st = db.connect().prepareStatement("DELETE FROM CUSTOMER WHERE USER_ID = ?");
+		try {
+			st.setInt(1, form.getUserId());
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		st.executeUpdate();
+
+	}
+
+	//新規顧客登録
+	public void doInsert(NewForm form) {
+		DBConnector db = new DBConnector();
+		PreparedStatement st = null;
+		//		int i = doUserIdMax();
+		try {
+			int index = 0;
+			st = db.connect().prepareStatement(
+					"INSERT INTO CUSTOMER VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, SYSDATE,SYSDATE,TO_DATE(?),?,?)");
+			st.setInt(++index, doUserIdMax());
+			st.setString(++index, form.getFirstName());
+			st.setString(++index, form.getLastName());
+			st.setString(++index, form.getFirstNameKana());
+			st.setString(++index, form.getLastNameKana());
+			st.setString(++index, form.getTitle());
+			st.setString(++index, form.getSex());
+			st.setString(++index, form.getClassification1());
+			st.setString(++index, form.getClassification2());
+			st.setString(++index, form.getPositionName());
+			st.setString(++index, form.getCompany());
+			st.setString(++index, form.getDepartment1());
+			st.setString(++index, form.getDepartment2());
+			st.setString(++index, form.getPostal());
+			st.setString(++index, form.getStreet1());
+			st.setString(++index, form.getTell());
+			st.setString(++index, form.getFax());
+			st.setString(++index, form.getMobile());
+			st.setString(++index, form.getEmail());
+			st.setDate(++index, form.getChangeDate());
+			st.setString(++index, form.getStreet2());
+			st.setString(++index, form.getComment1());
+			st.executeUpdate();
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		} finally {
+			db.close(st);
+		}
+	}
+
+	//USER_IDの最大値
+	public int doUserIdMax() {
+		DBConnector db = new DBConnector();
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		int maxId = 0;
+		try {
+			st = db.connect().prepareStatement("SELECT MAX(USER_ID) FROM CUSTOMER");
+			rs = st.executeQuery();
+			while (rs.next()) {// 次のレコードに下がれればの条件式//
+				maxId = rs.getInt("MAX(USER_ID)");
+			}
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		} finally {
+			db.close(st);
+		}
+		return ++maxId;
 
 	}
 

@@ -4,7 +4,7 @@ import java.sql.Date;
 
 import org.apache.struts.action.ActionForm;
 
-public class UpdateForm extends ActionForm {
+public class NewForm extends ActionForm {
 
 	private int userId;
 	private String firstName;
@@ -31,6 +31,9 @@ public class UpdateForm extends ActionForm {
 	private String comment1;
 
 	private int select = 0;
+	private String zip01;
+	private String pref01;
+	private String addr01;
 
 	public int getUserId() {
 		return userId;
@@ -176,6 +179,27 @@ public class UpdateForm extends ActionForm {
 	}
 	public void setChangeDate(Date changeDate) {
 		this.changeDate = changeDate;
+	}
+	public String getZip01() {
+		return zip01;
+	}
+	public void setZip01(String zip01) {
+		this.postal = zip01;
+		this.zip01 = zip01;
+	}
+	public String getPref01() {
+		return pref01;
+	}
+	public void setPref01(String pref01) {
+		this.street1 = pref01;
+		this.pref01 = pref01;
+	}
+	public String getAddr01() {
+		return addr01;
+	}
+	public void setAddr01(String addr01) {
+		this.street2 = addr01;
+		this.addr01 = addr01;
 	}
 
 }
