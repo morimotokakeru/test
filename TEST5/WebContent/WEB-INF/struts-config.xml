@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config
+    PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+    "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+
+	<!-- ActionFormの定義を行います -->
+	<form-beans>
+		<form-bean name="userView" type="users.UserViewForm" />
+
+		<!-- login -->
+		<form-bean name="LoginActionForm"
+			type="login.LoginActionForm" />
+		<!-- Join -->
+		<form-bean name="JoinActionForm"
+			type="join.JoinActionForm" />
+		<form-bean name="UpdateActionForm"
+			type="join.UpdateActionForm" />			
+		<form-bean name="UserInfoActionForm" type="join.UserInfoActionForm"/>
+		<form-bean name="DeleteActionForm" type="join.DeleteActionForm"/>	
+
+		<form-bean name="userdetail" type="users.UserDetailForm"/>
+		<form-bean name="update" type="users.UpdateForm" />
+		
+	</form-beans>
+
+	<global-forwards>
+		<forward name="join" path="join.do" />
+		<forward name="info" path="info.do" />
+	</global-forwards>
+
+	<!-- ActionとActionFormとURLのマッピング設定を行います -->
+	<action-mappings>
+
+		<!-- Join -->
+		<action path="/join" forward="/WEB-INF/views/join.jsp"  />
+		<action path="/insert" name="JoinActionForm"
+			type="join.JoinAction" input="/WEB-INF/views/join.jsp"
+			scope="request">
+			<forward name="failure" path="/WEB-INF/views/failure.jsp" />
+			<forward name="success" path="/login.do" redirect="true" />
+		</action>
+		<action path="/info" type="join.UserInfoAction" scope="session" >
+			<forward name="success" path="/WEB-INF/views/UserInfoForm.jsp"/>
+		</action>
+		<action path="/info/modify" type="join.UserInfoAction" scope="session">
+		<forward name="success" path="/WEB-INF/views/UpdateForm.jsp"/>
+		</action>
+		
+		<!-- delete -->
+		<action path="/info/confirm" forward="/WEB-INF/views/UserDelete.jsp"  />
+		<action path="/info/delete" name="DeleteActionForm" type="join.DeleteAction" input="/WEB-INF/views/UserDelete.jsp" scope="session">
+			<forward name="success" path="/index.jsp"/>
+		</action>
+		
+		<action path="/info/update" name="UpdateActionForm" type="join.UpdateAction" input="/WEB-INF/views/UpdateForm.jsp" scope="session">
+			<forward name = "success" path="/users.do" redirect="true"/>
+		</action>
+
+
+		<!-- login -->
+		<action path="/login" name="LoginActionForm"
+			type="login.LoginAction" input="/WEB-INF/views/login.jsp"
+			scope="session">
+			<forward name="success" path="/users.do" redirect="true" />
+
+			<forward name="failure" path="/WEB-INF/views/failure.jsp" />
+
+			<!-- <forward name="failure" path="/WEB-INF/views/failure.jsp" /> -->
+
+		</action>
+
+		<!-- <action path="/login" input="/login.jsp" name="LoginForm" scope="session" 
+			type="login.LoginAction"> <forward name="success" path="/WEB-INF/views/success.jsp" 
+			/> <forward name="failure" path="/WEB-INF/views/failure.jsp" /> </action> -->
+		<action path="/users" name="userView" scope="request"
+			type="users.UserViewAction">
+			<forward name="ok" path="/WEB-INF/views/userview.jsp"></forward>
+		</action>
+		<action path="/userdetail" name="userdetail" scope="request"
+			type="users.UserDetailAction">
+			<forward name="ok" path="/WEB-INF/views/userdetail.jsp"></forward>
+		</action>
+		<action path="/users/update" name="update" scope="request"
+			type="users.UpdateAction">
+			<forward name="ok" path="/WEB-INF/views/update.jsp" />
+			<forward name="check" path="/WEB-INF/views/updateC.jsp" />
+			<forward name="view" path="/users.do" redirect="true" />
+
+
+		</action>
+	</action-mappings>
+
+	<!--メッセージリソースファイルを設定 -->
+	<message-resources parameter="resource" />
+
+	<!-- Validatorプラグインの設定 -->
+	<!-- <plug-in className="org.apache.struts.validator.ValidatorPlugIn"> <set-property
+		property="pathnames" value="/org/apache/struts/validator/validator-rules.xml,
+		/WEB-INF/validation.xml" /> </plug-in> -->
+</struts-config>
