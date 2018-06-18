@@ -34,7 +34,7 @@
 					<th>敬称</th>
 					<td><html:select property="title">
 							<html:option value=""/>
-							<logic:iterate id="list" name="pullDownList">
+							<logic:iterate id="list" name="pullDownListT">
 								<html:option value="${list.title }" />
 							</logic:iterate>
 						</html:select></td>
@@ -43,7 +43,7 @@
 					<th>性別</th>
 					<td><html:select property="sex">
 							<html:option value=""/>
-							<logic:iterate id="list" name="pullDownList">
+							<logic:iterate id="list" name="pullDownListS">
 								<html:option value="${list.sex }" />
 							</logic:iterate>
 						</html:select></td>
@@ -52,14 +52,14 @@
 					<th>分類1</th>
 					<td><html:select property="classification1">
 							<html:option value=""/>
-							<logic:iterate id="list" name="pullDownList">
+							<logic:iterate id="list" name="pullDownListC1">
 								<html:option value="${list.classification1 }" />
 							</logic:iterate>
 						</html:select></td>
 					<th>分類2</th>
 					<td><html:select property="classification2">
 							<html:option value=""/>
-							<logic:iterate id="list" name="pullDownList">
+							<logic:iterate id="list" name="pullDownListC2">
 								<html:option value="${list.classification2 }" />
 							</logic:iterate>
 						</html:select></td>

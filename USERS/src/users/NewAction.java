@@ -30,7 +30,10 @@ public class NewAction extends Action {
 	public ActionForward doGet(ActionMapping mapping, ActionForm _form, HttpServletRequest request,
 		HttpServletResponse response) {
 		UserDao dao = new UserDao();// 実際処理する為のクラス//
-		request.setAttribute("pullDownList", dao.doPullDown());
+		request.setAttribute("pullDownListT", dao.doPullDownTitle());
+		request.setAttribute("pullDownListS", dao.doPullDownSex());
+		request.setAttribute("pullDownListC1", dao.doPullDownClassification1());
+		request.setAttribute("pullDownListC2", dao.doPullDownClassification2());
 		return mapping.findForward("ok");
 
 	}
