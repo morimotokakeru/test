@@ -1,41 +1,44 @@
 package users;
+import org.apache.struts.action.ActionForm;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+public class OptionForm extends ActionForm {
 
-/**
- * Servlet implementation class OptionForm
- */
-@WebServlet("/OptionForm")
-public class OptionForm extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public OptionForm() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	private String title;
+	private String classification1;
+	private String classification2;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	private int select = 0;
+
+	public String getTitle() {
+		return title;
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getClassification1() {
+		return classification1;
+	}
+
+	public void setClassification1(String classification1) {
+		this.classification1 = classification1;
+	}
+
+	public String getClassification2() {
+		return classification2;
+	}
+
+	public void setClassification2(String classification2) {
+		this.classification2 = classification2;
+	}
+
+	public int getSelect() {
+		return select;
+	}
+
+	public void setSelect(int select) {
+		this.select = select;
 	}
 
 }

@@ -367,7 +367,7 @@ public class UserDao {
 	}
 
 	//PullDown 分類1追加書き込み
-	public void classInsert1Insert(String classification1) {
+	public void classInsert1(String classification1) {
 		DBConnector db = new DBConnector();
 		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
 		try {
@@ -383,7 +383,7 @@ public class UserDao {
 	}
 
 	//PullDown 分類2追加書き込み
-	public void classification2Insert(String classification2) {
+	public void classInsert2(String classification2) {
 		DBConnector db = new DBConnector();
 		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
 		try {
