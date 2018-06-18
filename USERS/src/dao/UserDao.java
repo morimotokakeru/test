@@ -241,161 +241,36 @@ public class UserDao {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		} finally {
-			db.close(st, rs);
+			db.close(st);
 		}
 		return users;
 	}
 
-	//プールダウン用 敬称リスト
-	public List<UserBean> doPullDownTitle() {
+	//プールダウン用、分類１、分類2、性別、敬称リスト
+	public List<UserBean> doPullDown() {
 		DBConnector db = new DBConnector();
 		List<UserBean> pullDowns = null;
 		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
 		ResultSet rs = null;
 		try {
 			pullDowns = new ArrayList<UserBean>();
-			st = db.connect().prepareStatement("SELECT TITLE_NAME FROM PULLDOWN_TITLE");
+			st = db.connect().prepareStatement("SELECT * FROM PULLDOWN");
 			rs = st.executeQuery();
 			while (rs.next()) {
 				UserBean list = new UserBean();
 				list.setTitle(rs.getString("TITLE_NAME"));
-				pullDowns.add(list);
-			}
-		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		} finally {
-			db.close(st, rs);
-		}
-
-		return pullDowns;
-
-	}
-
-	//プールダウン用 性別リスト
-	public List<UserBean> doPullDownSex() {
-		DBConnector db = new DBConnector();
-		List<UserBean> pullDowns = null;
-		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
-		ResultSet rs = null;
-		try {
-			pullDowns = new ArrayList<UserBean>();
-			st = db.connect().prepareStatement("SELECT SEX_NAME FROM PULLDOWN_SEX");
-			rs = st.executeQuery();
-			while (rs.next()) {
-				UserBean list = new UserBean();
-				list.setSex(rs.getString("SEX_NAME"));
-				pullDowns.add(list);
-			}
-		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		} finally {
-			db.close(st, rs);
-		}
-
-		return pullDowns;
-
-	}
-
-	//プールダウン用 分類１リスト
-	public List<UserBean> doPullDownClassification1() {
-		DBConnector db = new DBConnector();
-		List<UserBean> pullDowns = null;
-		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
-		ResultSet rs = null;
-		try {
-			pullDowns = new ArrayList<UserBean>();
-			st = db.connect().prepareStatement("SELECT CLASSIFICATION1_NAME FROM PULLDOWN_CLASSIFICATION1");
-			rs = st.executeQuery();
-			while (rs.next()) {
-				UserBean list = new UserBean();
+				list.setSex(rs.getString("SEX"));
 				list.setClassification1(rs.getString("CLASSIFICATION1_NAME"));
-				pullDowns.add(list);
-			}
-		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		} finally {
-			db.close(st, rs);
-		}
-
-		return pullDowns;
-
-	}
-
-	//プールダウン用 分類2リスト
-	public List<UserBean> doPullDownClassification2() {
-		DBConnector db = new DBConnector();
-		List<UserBean> pullDowns = null;
-		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
-		ResultSet rs = null;
-		try {
-			pullDowns = new ArrayList<UserBean>();
-			st = db.connect().prepareStatement("SELECT CLASSIFICATION2_NAME FROM PULLDOWN_CLASSIFICATION2");
-			rs = st.executeQuery();
-			while (rs.next()) {
-				UserBean list = new UserBean();
 				list.setClassification2(rs.getString("CLASSIFICATION2_NAME"));
 				pullDowns.add(list);
 			}
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
-		} finally {
-			db.close(st, rs);
-		}
+		} // 準備//
 
 		return pullDowns;
 
-	}
-
-	//PullDown 敬称追加書き込み
-	public void titleInsert(String titleName) {
-		DBConnector db = new DBConnector();
-		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
-		try {
-			st = db.connect().prepareStatement("INSERT INTO PULLDOWN_TITLE VALUES(?)");
-			st.setString(1, titleName);
-			st.executeUpdate();
-		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		} finally {
-			db.close(st);
-		}
-	}
-
-	//PullDown 分類1追加書き込み
-	public void classInsert1Insert(String classification1) {
-		DBConnector db = new DBConnector();
-		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
-		try {
-			st = db.connect().prepareStatement("INSERT INTO PULLDOWN_CLASSIFICATION1 VALUES(?)");
-			st.setString(1, classification1);
-			st.executeUpdate();
-		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		} finally {
-			db.close(st);
-		}
-	}
-
-	//PullDown 分類2追加書き込み
-	public void classification2Insert(String classification2) {
-		DBConnector db = new DBConnector();
-		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
-		try {
-			st = db.connect().prepareStatement("INSERT INTO PULLDOWN_CLASSIFICATION2 VALUES(?)");
-			st.setString(1, classification2);
-			st.executeUpdate();
-		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		} finally {
-			db.close(st);
-		}
 	}
 
 	//顧客データ削除用
@@ -410,18 +285,16 @@ public class UserDao {
 			e.printStackTrace();
 		}
 		st.executeUpdate();
-
 	}
 
 	//新規顧客登録
 	public void doInsert(NewForm form) {
 		DBConnector db = new DBConnector();
 		PreparedStatement st = null;
-		//		int i = doUserIdMax();
+//		int i = doUserIdMax();
 		try {
 			int index = 0;
-			st = db.connect().prepareStatement(
-					"INSERT INTO CUSTOMER VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, SYSDATE,SYSDATE,TO_DATE(?),?,?)");
+			st = db.connect().prepareStatement("INSERT INTO CUSTOMER VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, SYSDATE,SYSDATE,TO_DATE(?),?,?)");
 			st.setInt(++index, doUserIdMax());
 			st.setString(++index, form.getFirstName());
 			st.setString(++index, form.getLastName());
@@ -474,5 +347,4 @@ public class UserDao {
 		return ++maxId;
 
 	}
-
 }

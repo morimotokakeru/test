@@ -32,10 +32,7 @@ public class UpdateAction extends Action {
 		UpdateForm form = (UpdateForm)_form;
 		UserDao dao = new UserDao();// 実際処理する為のクラス//
 		request.setAttribute("beans", dao.getOneRecode(form.getUserId()));
-		request.setAttribute("pullDownListT", dao.doPullDownTitle());
-		request.setAttribute("pullDownListS", dao.doPullDownSex());
-		request.setAttribute("pullDownListC1", dao.doPullDownClassification1());
-		request.setAttribute("pullDownListC2", dao.doPullDownClassification2());
+		request.setAttribute("pullDownList", dao.doPullDown());
 		return mapping.findForward("ok");
 	}
 
