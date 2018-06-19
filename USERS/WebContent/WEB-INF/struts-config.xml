@@ -49,9 +49,10 @@
 			scope="session">
 			<forward name="success" path="/users.do" redirect="true" />
 
-			<forward name="failure" path="/WEB-INF/views/failure.jsp" />
-
-			<!-- <forward name="failure" path="/WEB-INF/views/failure.jsp" /> -->
+	<forward name="failure" path="/logout.do" />
+		</action>
+		<action path="/logout" type="login.LogoutAction" scope="session">
+			<forward name="success" path="/index.jsp"/>
 
 		</action>
 
