@@ -1,0 +1,5 @@
+errors.header = <font color="red">
+errors.required = {0}を入力してください。<br>
+errors.footer = </font>
+
+firstName=苗字

@@ -1,4 +1,4 @@
-package users;
+package admin;
 
 import java.sql.SQLException;
 
@@ -13,6 +13,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import dao.UserDao;
+import users.UpdateForm;
 
 public class UpdateAction extends Action {
 	ActionForward forward;
@@ -45,19 +46,15 @@ public class UpdateAction extends Action {
 		UserDao dao = new UserDao();// 実際処理する為のクラス//
 		UpdateForm form = (UpdateForm)_form;
 		if(form.getSelect() == 1) {
-			request.setAttribute("form",form );
-			request.setAttribute("beans", dao.getOneRecode(form.getUserId()));
 			if (_form instanceof UpdateForm) {
 				ActionErrors errors = form.validate(mapping, request);
 				if (errors != null && !errors.isEmpty()) {
 					saveErrors(request, errors);
-					request.setAttribute("pullDownListT", dao.doPullDownTitle());
-					request.setAttribute("pullDownListS", dao.doPullDownSex());
-					request.setAttribute("pullDownListC1", dao.doPullDownClassification1());
-					request.setAttribute("pullDownListC2", dao.doPullDownClassification2());
+					request.setAttribute("form",form );
 					return mapping.getInputForward();
 				}
 			}
+			request.setAttribute("form",form );
 			return mapping.findForward("check");
 		}
 			dao.doUpdate(form);
