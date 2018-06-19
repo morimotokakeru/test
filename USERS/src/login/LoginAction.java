@@ -42,7 +42,7 @@ public class LoginAction extends Action {
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
-//	ActionForward forward ;
+		ActionForward forward ;
 		HttpSession session = request.getSession();
 
 		String userName = request.getParameter("userName");
@@ -57,8 +57,8 @@ public class LoginAction extends Action {
 			return mapping.findForward(FAILURE);
 			//forward.setRedirect(false);
 			// forward.setNextPath("Login.do");
-		} else if (check == -1) { // dont have id -> login
-		
+		} else if (check == -1) // dont have id -> login
+		{
 			request.setAttribute("fail", "-1");
 			return mapping.findForward(FAILURE);
 			//forward.setRedirect(false);
@@ -73,26 +73,4 @@ public class LoginAction extends Action {
 	     //	return forward;
 	}
 
-	/*
-	 * AdminDao dao = AdminDao.get;
-	 * 
-	 * LoginActionForm loginForm = (LoginActionForm) form;
-	 * 
-	 * request.setAttribute("adminbeans", dao.getAdmin(loginForm));
-	 */
-
-	/*
-	 * if (loginForm.getUserName().equals(loginForm.getPassword())) { return
-	 * mapping.findForward(SUCCESS); } else { return mapping.findForward(FAILURE); }
-	 */
-
-	/*
-	 * String userName = request.getParameter("userName");
-	 * System.out.println("LoginAciton userName: " + userName); String password =
-	 * request.getParameter("password"); System.out.println("LoginAciton password: "
-	 * + password);
-	 * 
-	 * if (loginForm.getUserName().equals(loginForm.getPassword())) { return
-	 * mapping.findForward(SUCCESS); } else { return mapping.findForward(FAILURE); }
-	 */
 }

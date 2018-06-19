@@ -13,9 +13,13 @@
 		<form-bean name="LoginActionForm"
 			type="login.LoginActionForm" />
 		<!-- Join -->
-		<form-bean name="JoinActionForm"
-			type="join.JoinActionForm" />
-
+		<form-bean name="JoinActionForm" type="join.JoinActionForm" />
+		<form-bean name="UpdateActionForm"
+			type="join.UpdateActionForm" />
+		<form-bean name="UserInfoActionForm"
+			type="join.UserInfoActionForm" />
+		<form-bean name="DeleteActionForm"
+			type="join.DeleteActionForm" />
 
 		<!-- 顧客詳細情報 -->
 		<form-bean name="userdetail" type="users.UserDetailForm"/>
@@ -31,18 +35,41 @@
 
 	<global-forwards>
 		<forward name="join" path="join.do" />
+		<forward name="info" path="info.do" />
 	</global-forwards>
 
 	<!-- ActionとActionFormとURLのマッピング設定を行います -->
 	<action-mappings>
 
 		<!-- Join -->
-		<action path="/join" forward="/WEB-INF/views/join.jsp"  />
+		<action path="/join" forward="/WEB-INF/views/join.jsp" />
 		<action path="/insert" name="JoinActionForm"
 			type="join.JoinAction" input="/WEB-INF/views/join.jsp"
 			scope="request">
 			<forward name="failure" path="/WEB-INF/views/failure.jsp" />
 			<forward name="success" path="/login.do" redirect="true" />
+		</action>
+		<action path="/info" type="join.UserInfoAction" scope="session">
+			<forward name="success"
+				path="/WEB-INF/views/UserInfoForm.jsp" />
+		</action>
+		<action path="/info/modify" type="join.UserInfoAction"
+			scope="session">
+			<forward name="success" path="/WEB-INF/views/UpdateForm.jsp" />
+		</action>
+
+		<!-- delete -->
+		<action path="/join/confirm"
+			forward="/WEB-INF/views/UserDelete.jsp" />
+		<action path="/info/delete" name="DeleteActionForm"
+			type="join.DeleteAction" scope="session">
+			<forward name="success" path="/index.jsp" />
+		</action>
+
+		<action path="/info/update" name="UpdateActionForm"
+			type="join.UpdateAction" input="/WEB-INF/views/UpdateForm.jsp"
+			scope="session">
+			<forward name="success" path="/users.do" redirect="true" />
 		</action>
 
 
@@ -52,14 +79,16 @@
 			scope="session">
 			<forward name="success" path="/users.do" redirect="true" />
 
-			<forward name="failure" path="/WEB-INF/views/failure.jsp" />
-
-			<!-- <forward name="failure" path="/WEB-INF/views/failure.jsp" /> -->
+			<forward name="failure" path="/logout.do" />
+		</action>
+		<action path="/logout" type="login.LogoutAction"
+			scope="session">
+			<forward name="success" path="/index.jsp" />
 
 		</action>
 
-		<!-- <action path="/login" input="/login.jsp" name="LoginForm" scope="session"
-			type="login.LoginAction"> <forward name="success" path="/WEB-INF/views/success.jsp"
+		<!-- <action path="/login" input="/login.jsp" name="LoginForm" scope="session" 
+			type="login.LoginAction"> <forward name="success" path="/WEB-INF/views/success.jsp" 
 			/> <forward name="failure" path="/WEB-INF/views/failure.jsp" /> </action> -->
 
 		<!-- TOP画面 -->

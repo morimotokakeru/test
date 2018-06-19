@@ -44,6 +44,7 @@ public class AdminDao {
 				member.setFirstName(rs.getString("first_name"));
 				member.setLastName(rs.getString("last_name"));
 			}
+			
 			return member;
 		} catch (
 
@@ -71,12 +72,18 @@ public class AdminDao {
 		ResultSet rs = null;
 
 		String dbPW = ""; // db password
+		int logCount; 
+		
 		int x = -1;
 
 		try {
 			StringBuffer query = new StringBuffer();
-			query.append("SELECT PASSWORD FROM ADMIN WHERE EMAIL=?");
-
+			query.append("SELECT PASSWORD, LOGIN_MISS_COUNT FROM ADMIN WHERE EMAIL=?");
+			
+			StringBuffer query2 = new StringBuffer();
+			query2.append("UPDATE ADMIN SET LOGIN_MISS_COUNT = LOGIN_MISS_COUNT+1");
+			query2.append(" WHERE EMAIL=?");
+			
 			conn = DBConnect.getConnection();
 			st = conn.prepareStatement(query.toString());
 			st.setString(1, id);
@@ -84,10 +91,16 @@ public class AdminDao {
 
 			if (rs.next()) {
 				dbPW = rs.getString("password");
-				if (dbPW.equals(pw))
+				logCount = rs.getInt("LOGIN_MISS_COUNT");
+				if (dbPW.equals(pw) && logCount < 6)
 					x = 1;
-				else
-					x = 0;
+				else {
+					st = conn.prepareStatement(query2.toString());
+					conn.setAutoCommit(false);
+					st.setString(1, id);
+					st.executeUpdate();
+					conn.commit();
+					x = 0;}
 			} else {
 				x = -1;
 			}
