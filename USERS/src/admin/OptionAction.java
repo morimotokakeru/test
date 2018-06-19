@@ -1,4 +1,4 @@
-package users;
+package admin;
 
 import java.sql.SQLException;
 
@@ -7,14 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import dao.UserDao;
 
-public class UpdateAction extends Action {
+public class OptionAction extends Action {
 	ActionForward forward;
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm _form, HttpServletRequest request,
@@ -30,37 +29,30 @@ public class UpdateAction extends Action {
 
 	public ActionForward doGet(ActionMapping mapping, ActionForm _form, HttpServletRequest request,
 		HttpServletResponse response) {
-		UpdateForm form = (UpdateForm)_form;
 		UserDao dao = new UserDao();// 実際処理する為のクラス//
-		request.setAttribute("beans", dao.getOneRecode(form.getUserId()));
 		request.setAttribute("pullDownListT", dao.doPullDownTitle());
 		request.setAttribute("pullDownListS", dao.doPullDownSex());
 		request.setAttribute("pullDownListC1", dao.doPullDownClassification1());
 		request.setAttribute("pullDownListC2", dao.doPullDownClassification2());
 		return mapping.findForward("ok");
+
 	}
 
 	public ActionForward doPost(ActionMapping mapping, ActionForm _form, HttpServletRequest request,
 		HttpServletResponse response) {
 		UserDao dao = new UserDao();// 実際処理する為のクラス//
-		UpdateForm form = (UpdateForm)_form;
-		if(form.getSelect() == 1) {
-			request.setAttribute("form",form );
-			request.setAttribute("beans", dao.getOneRecode(form.getUserId()));
-			if (_form instanceof UpdateForm) {
-				ActionErrors errors = form.validate(mapping, request);
-				if (errors != null && !errors.isEmpty()) {
-					saveErrors(request, errors);
-					request.setAttribute("pullDownListT", dao.doPullDownTitle());
-					request.setAttribute("pullDownListS", dao.doPullDownSex());
-					request.setAttribute("pullDownListC1", dao.doPullDownClassification1());
-					request.setAttribute("pullDownListC2", dao.doPullDownClassification2());
-					return mapping.getInputForward();
-				}
-			}
-			return mapping.findForward("check");
+		OptionForm form = (OptionForm)_form;
+		int i = form.getSelect();
+		switch (i) {
+			case 1:
+				dao.titleInsert(form.getTitle());break;
+			case 2:
+				dao.classInsert1(form.getClassification1());break;
+			case 3:
+				dao.classInsert2(form.getClassification2());break;
 		}
-			dao.doUpdate(form);
+
 			return mapping.findForward("view");
+
 	}
 }

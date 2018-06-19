@@ -25,7 +25,6 @@
 					<th>(フリガナ)</th>
 					<td><html:text name="bean" property="firstNameKana"></html:text></td>
 				</tr>
-					<html:errors property="firstName" />
 				<tr>
 					<th>名前</th>
 					<td><html:text name="bean" property="lastName"></html:text></td>

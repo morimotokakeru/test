@@ -21,12 +21,15 @@
 		<form-bean name="DeleteActionForm"
 			type="join.DeleteActionForm" />
 
-
-
-		<form-bean name="userdetail" type="users.UserDetailForm" />
+		<!-- 顧客詳細情報 -->
+		<form-bean name="userdetail" type="users.UserDetailForm"/>
+		<!-- 顧客情報更新 -->
 		<form-bean name="update" type="users.UpdateForm" />
+		<!-- 顧客情報削除 -->
 		<form-bean name="delete" type="users.DeleteForm" />
+		<!-- 新規顧客情報登録 -->
 		<form-bean name="new" type="users.NewForm" />
+		<!-- プルダウン情報 -->
 		<form-bean name="option" type="users.OptionForm" />
 	</form-beans>
 
@@ -87,45 +90,84 @@
 		<!-- <action path="/login" input="/login.jsp" name="LoginForm" scope="session" 
 			type="login.LoginAction"> <forward name="success" path="/WEB-INF/views/success.jsp" 
 			/> <forward name="failure" path="/WEB-INF/views/failure.jsp" /> </action> -->
+
+		<!-- TOP画面 -->
 		<action path="/users" name="userView" scope="request"
 			type="users.UserViewAction">
 			<forward name="ok" path="/WEB-INF/views/userview.jsp"></forward>
 		</action>
+		<!-- 顧客情報詳細 -->
 		<action path="/userdetail" name="userdetail" scope="request"
 			type="users.UserDetailAction">
 			<forward name="ok" path="/WEB-INF/views/userdetail.jsp"></forward>
 		</action>
+		<!-- 顧客情報更新 -->
 		<action path="/users/update" name="update" scope="request"
-			type="users.UpdateAction">
+			type="users.UpdateAction" input="/WEB-INF/views/update.jsp"
+			validate="false">
 			<forward name="ok" path="/WEB-INF/views/update.jsp" />
 			<forward name="check" path="/WEB-INF/views/updateC.jsp" />
 			<forward name="view" path="/users.do" redirect="true" />
 		</action>
-		<action path="/users/delete" name="delete" scope="request"
-			type="users.DeleteAction">
+		<!-- 顧客情報削除 -->
+		<action path="/users/delete" name="delete" scope="request" type="users.DeleteAction">
 			<forward name="ok" path="/WEB-INF/views/delete.jsp" />
 			<forward name="delete" path="/users.do" redirect="true" />
 		</action>
-		<action path="/users/new" name="new" scope="request"
-			type="users.NewAction">
+		<!-- 新規顧客情報登録 -->
+		<action path="/users/new" name="new" scope="request" type="users.NewAction">
 			<forward name="ok" path="/WEB-INF/views/new.jsp" />
 			<forward name="check" path="/WEB-INF/views/newC.jsp" />
 			<forward name="view" path="/users.do" redirect="true" />
 		</action>
-
-		<action path="/option" name="option" scope="request"
-			type="users.OptionAction">
+		<!-- プルダウン情報新規・削除 -->
+		<action path="/option" name="option" scope="request" type="users.OptionAction">
 			<forward name="ok" path="/WEB-INF/views/option.jsp" />
 			<forward name="view" path="/users.do" redirect="true" />
 		</action>
 
-	</action-mappings>
+		<!-- 管理者action -->
+		<!-- TOP画面 -->
+		<action path="/admin" name="adminView" scope="request"
+			type="users.UserViewAction">
+			<forward name="ok" path="/WEB-INF/views/admin/adminView.jsp"></forward>
+		</action>
+		<!-- 顧客情報詳細 -->
+		<action path="/admin/Detail" name="userdetail" scope="request"
+			type="users.UserDetailAction">
+			<forward name="ok" path="/WEB-INF/views/admin/adminDetail.jsp"></forward>
+		</action>
+		<!-- 顧客情報更新 -->
+		<action path="/admin/update" name="update" scope="request"
+			type="users.UpdateAction">
+			<forward name="ok" path="/WEB-INF/views/admin/adminUpdate.jsp" />
+			<forward name="check" path="/WEB-INF/views/admin/adminUpdateC.jsp" />
+			<forward name="view" path="/admin.do" redirect="true" />
+		</action>
+		<!-- 顧客情報削除 -->
+		<action path="/admin/delete" name="delete" scope="request" type="users.DeleteAction">
+			<forward name="ok" path="/WEB-INF/views/admin/adminDelete.jsp" />
+			<forward name="delete" path="/admin.do" redirect="true" />
+		</action>
+		<!-- 新規顧客情報登録 -->
+		<action path="/admin/new" name="new" scope="request" type="users.NewAction">
+			<forward name="ok" path="/WEB-INF/views/admin/New.jsp" />
+			<forward name="check" path="/WEB-INF/views/admin/adminNewC.jsp" />
+			<forward name="view" path="/admin.do" redirect="true" />
+		</action>
+		<!-- プルダウン情報新規・削除 -->
+		<action path="/admin/option" name="option" scope="request" type="users.OptionAction">
+			<forward name="ok" path="/WEB-INF/views/admin/adminOption.jsp" />
+			<forward name="view" path="/admin.do" redirect="true" />
+		</action>
+
+ 	</action-mappings>
 
 	<!--メッセージリソースファイルを設定 -->
 	<message-resources parameter="resource" />
 
 	<!-- Validatorプラグインの設定 -->
-	<!-- <plug-in className="org.apache.struts.validator.ValidatorPlugIn"> <set-property 
-		property="pathnames" value="/org/apache/struts/validator/validator-rules.xml, 
-		/WEB-INF/validation.xml" /> </plug-in> -->
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn"> <set-property
+		property="pathnames" value="/org/apache/struts/validator/validator-rules.xml,
+		/WEB-INF/validation.xml" /> </plug-in>
 </struts-config>

@@ -19,32 +19,10 @@
 			</field>
 		</form>
 
-		<form name="insert">
-			<field property="title" depends="required">
-				<msg name="required" key="errors.required" />
-				<arg position="0" key="title" />
-			</field>
-			<field property="nickname" depends="required">
-				<msg name="required" key="errors.required" />
-				<arg position="0" key="nickname" />
-			</field>
-			<field property="message" depends="required">
-				<msg name="required" key="errors.required" />
-				<arg position="0" key="message" />
-			</field>
-		</form>
 		<form name="update">
-			<field property="title" depends="required">
+			<field property="firstName" depends="required">
 				<msg name="required" key="errors.required" />
-				<arg position="0" key="title" />
-			</field>
-			<field property="nickname" depends="required">
-				<msg name="required" key="errors.required" />
-				<arg position="0" key="nickname" />
-			</field>
-			<field property="message" depends="required">
-				<msg name="required" key="errors.required" />
-				<arg position="0" key="message" />
+				<arg position="0" key="firstName" />
 			</field>
 		</form>
 	</formset>
