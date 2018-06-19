@@ -13,13 +13,17 @@
 		<form-bean name="LoginActionForm"
 			type="login.LoginActionForm" />
 		<!-- Join -->
-		<form-bean name="JoinActionForm"
-			type="join.JoinActionForm" />
+		<form-bean name="JoinActionForm" type="join.JoinActionForm" />
+		<form-bean name="UpdateActionForm"
+			type="join.UpdateActionForm" />
+		<form-bean name="UserInfoActionForm"
+			type="join.UserInfoActionForm" />
+		<form-bean name="DeleteActionForm"
+			type="join.DeleteActionForm" />
 
 
 
-		<form-bean name="userdetail" type="users.UserDetailForm"/>
-
+		<form-bean name="userdetail" type="users.UserDetailForm" />
 		<form-bean name="update" type="users.UpdateForm" />
 		<form-bean name="delete" type="users.DeleteForm" />
 		<form-bean name="new" type="users.NewForm" />
@@ -28,18 +32,41 @@
 
 	<global-forwards>
 		<forward name="join" path="join.do" />
+		<forward name="info" path="info.do" />
 	</global-forwards>
 
 	<!-- ActionとActionFormとURLのマッピング設定を行います -->
 	<action-mappings>
 
 		<!-- Join -->
-		<action path="/join" forward="/WEB-INF/views/join.jsp"  />
+		<action path="/join" forward="/WEB-INF/views/join.jsp" />
 		<action path="/insert" name="JoinActionForm"
 			type="join.JoinAction" input="/WEB-INF/views/join.jsp"
 			scope="request">
 			<forward name="failure" path="/WEB-INF/views/failure.jsp" />
 			<forward name="success" path="/login.do" redirect="true" />
+		</action>
+		<action path="/info" type="join.UserInfoAction" scope="session">
+			<forward name="success"
+				path="/WEB-INF/views/UserInfoForm.jsp" />
+		</action>
+		<action path="/info/modify" type="join.UserInfoAction"
+			scope="session">
+			<forward name="success" path="/WEB-INF/views/UpdateForm.jsp" />
+		</action>
+
+		<!-- delete -->
+		<action path="/join/confirm"
+			forward="/WEB-INF/views/UserDelete.jsp" />
+		<action path="/info/delete" name="DeleteActionForm"
+			type="join.DeleteAction" scope="session">
+			<forward name="success" path="/index.jsp" />
+		</action>
+
+		<action path="/info/update" name="UpdateActionForm"
+			type="join.UpdateAction" input="/WEB-INF/views/UpdateForm.jsp"
+			scope="session">
+			<forward name="success" path="/users.do" redirect="true" />
 		</action>
 
 
@@ -49,15 +76,16 @@
 			scope="session">
 			<forward name="success" path="/users.do" redirect="true" />
 
-	<forward name="failure" path="/logout.do" />
+			<forward name="failure" path="/logout.do" />
 		</action>
-		<action path="/logout" type="login.LogoutAction" scope="session">
-			<forward name="success" path="/index.jsp"/>
+		<action path="/logout" type="login.LogoutAction"
+			scope="session">
+			<forward name="success" path="/index.jsp" />
 
 		</action>
 
-		<!-- <action path="/login" input="/login.jsp" name="LoginForm" scope="session"
-			type="login.LoginAction"> <forward name="success" path="/WEB-INF/views/success.jsp"
+		<!-- <action path="/login" input="/login.jsp" name="LoginForm" scope="session" 
+			type="login.LoginAction"> <forward name="success" path="/WEB-INF/views/success.jsp" 
 			/> <forward name="failure" path="/WEB-INF/views/failure.jsp" /> </action> -->
 		<action path="/users" name="userView" scope="request"
 			type="users.UserViewAction">
@@ -73,28 +101,31 @@
 			<forward name="check" path="/WEB-INF/views/updateC.jsp" />
 			<forward name="view" path="/users.do" redirect="true" />
 		</action>
-		<action path="/users/delete" name="delete" scope="request" type="users.DeleteAction">
+		<action path="/users/delete" name="delete" scope="request"
+			type="users.DeleteAction">
 			<forward name="ok" path="/WEB-INF/views/delete.jsp" />
 			<forward name="delete" path="/users.do" redirect="true" />
 		</action>
-		<action path="/users/new" name="new" scope="request" type="users.NewAction">
+		<action path="/users/new" name="new" scope="request"
+			type="users.NewAction">
 			<forward name="ok" path="/WEB-INF/views/new.jsp" />
 			<forward name="check" path="/WEB-INF/views/newC.jsp" />
 			<forward name="view" path="/users.do" redirect="true" />
 		</action>
 
-		<action path="/option" name="option" scope="request" type="users.OptionAction">
+		<action path="/option" name="option" scope="request"
+			type="users.OptionAction">
 			<forward name="ok" path="/WEB-INF/views/option.jsp" />
 			<forward name="view" path="/users.do" redirect="true" />
 		</action>
 
- 	</action-mappings>
+	</action-mappings>
 
 	<!--メッセージリソースファイルを設定 -->
 	<message-resources parameter="resource" />
 
 	<!-- Validatorプラグインの設定 -->
-	<!-- <plug-in className="org.apache.struts.validator.ValidatorPlugIn"> <set-property
-		property="pathnames" value="/org/apache/struts/validator/validator-rules.xml,
+	<!-- <plug-in className="org.apache.struts.validator.ValidatorPlugIn"> <set-property 
+		property="pathnames" value="/org/apache/struts/validator/validator-rules.xml, 
 		/WEB-INF/validation.xml" /> </plug-in> -->
 </struts-config>

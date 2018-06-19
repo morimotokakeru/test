@@ -11,12 +11,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>検索画面</title>
-<link rel="stylesheet" href="<%=request.getContextPath() %>/CSS/users.css"type="text/css"/>
+<script type="text/javascript">
+	function goModifyForm(){
+		location.href = "info.do";
+	}
+	function goLogout(){
+		location.href = "logout.do";
+	}
+</script>
 </head>
 <body>
-<%-- 	<h1>ようこそ <bean:write name="LoginActionForm" property="userName"></bean:write></h1>
- --%>	<h1>★顧客検索一覧画面</h1>
-	<%--
+	ようこそ
+	<bean:write name="LoginActionForm" property="userName"></bean:write>
+	<input type="button" value="情報の確認・変更" onClick="goModifyForm()" />
+	<input type="button" value="ログアウト" onClick="goLogout()" />
+	<h1>★顧客検索一覧画面</h1>
+	<%-- 
 	
 	<h3>
 		Welcome to
